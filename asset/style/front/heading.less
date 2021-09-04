@@ -1,0 +1,29 @@
+/**
+Component: heading
+*/
+
+/* Definitions
+ ======================================== */
+.uk-article .entry-content h2:not(.post-title):not(.item-title):not(.widget-title){
+	padding: 0.5rem 0 0.75rem 1rem;
+}
+.uk-article .entry-content h3:not(.post-title):not(.item-title):not(.widget-title){
+	padding: 0.75rem 1rem;
+}
+.uk-article .entry-content h4:not(.post-title):not(.item-title):not(.widget-title){
+	position: relative;
+	padding-bottom: 0.75rem;
+}
+.uk-article .entry-content h4:not(.post-title):not(.item-title):not(.widget-title)::after{
+	position: absolute;
+	bottom: -2px;
+	content: " ";
+	display: block;
+	width: 25%;
+}
+.uk-article .entry-content h5:not(.post-title):not(.item-title):not(.widget-title){
+	padding: 0.5rem;
+}
+.uk-article .entry-content h6:not(.post-title):not(.item-title):not(.widget-title){
+	padding: 0.75rem 1rem;
+}

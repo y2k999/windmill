@@ -1,0 +1,1203 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Windmill\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-29 21:51+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.3; wp-5.8\n"
+"X-Domain: windmill"
+
+#: inc/setup/tab/support.php:56
+msgid ""
+" Browse the documention for the detailed information regarding the Beans."
+msgstr ""
+
+#: model/app/comments.php:352
+msgid " Previous"
+msgstr ""
+
+#: inc/env/head.php:461
+#, php-format
+msgid "%s Category"
+msgstr ""
+
+#: inc/setup/admin.php:137
+#, php-format
+msgid ""
+"%s is a WordPress Starter Theme build with Uikit and Beans Framework. This "
+"theme comes with powerful features which will help you in designing amazing "
+"website for any type of niche (Business, Landing page, E-commerce, Local "
+"business, Personal website)"
+msgstr ""
+
+#: inc/env/head.php:484
+#, php-format
+msgid "%s Tag"
+msgstr ""
+
+#: inc/customizer/default.php:398
+msgid "404 Not Found"
+msgstr ""
+
+#: inc/customizer/section/template.php:98
+msgid "404 Page"
+msgstr ""
+
+#: inc/setup/tab/customize.php:59
+msgid "<strong>Basis</strong> Section  "
+msgstr ""
+
+#: inc/setup/tab/customize.php:63
+msgid "<strong>Design</strong> Section  "
+msgstr ""
+
+#: inc/setup/tab/customize.php:61
+msgid "<strong>SEO</strong> Section  "
+msgstr ""
+
+#: inc/setup/tab/customize.php:62
+msgid "<strong>SNS</strong> Section  "
+msgstr ""
+
+#: inc/setup/tab/customize.php:60
+msgid "<strong>Template</strong> Section  "
+msgstr ""
+
+#: inc/plugin/navwalker/navwalker-offcanvas.php:162
+#: inc/plugin/navwalker/navwalker-primary.php:181
+msgid "Add Menu"
+msgstr ""
+
+#: template-part/nav/nav-offcanvas.php:76
+msgid "Add Offcanvas Navigation"
+msgstr ""
+
+#: template-part/nav/nav-primary.php:79
+msgid "Add Primary Navigation"
+msgstr ""
+
+#: template-part/nav/nav-secondary.php:81
+msgid "Add Secondary Navigation"
+msgstr ""
+
+#: inc/env/secure.php:224
+msgid ""
+"Address (URL) of &quot;Settings -&gt; General&quot; is not set to SSL (https:"
+"//). Please check the setting."
+msgstr ""
+
+#: inc/setup/tab/customize.php:55
+msgid "After activating recommended plugins , now you can start customization."
+msgstr ""
+
+#: inc/setup/tab/overview.php:69
+msgid "All images that you use throughout a theme are kept in this directory."
+msgstr ""
+
+#. 1: dashboard link.
+#: inc/plugin/tgm/plugin-install.php:267
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: inc/setup/tab/overview.php:91
+msgid ""
+"Also, includes Third-Party Libraries, e.g. <a href=\"http:"
+"//tgmpluginactivation.com/\" target=\"_blank\">TGM Plugin Activator</a>, <a "
+"href=\"https://analytics.google.com/analytics/web/provision/#/provision\" "
+"target=\"_blank\">Google analytics</a>, <a href=\"http://w-shadow.com/\" "
+"target=\"_blank\">Theme Update Checker</a>."
+msgstr ""
+
+#: inc/customizer/section/template.php:84
+msgid "Archive"
+msgstr ""
+
+#: inc/env/title.php:269
+msgid "Archive List"
+msgstr ""
+
+#: inc/customizer/setting/skin/heading.php:105
+msgid "Archive List Title"
+msgstr ""
+
+#: inc/customizer/setting/seo/meta.php:84
+msgid "Archive Meta Item"
+msgstr ""
+
+#: inc/customizer/setting/basis/core.php:76
+msgid "Async and Defer"
+msgstr ""
+
+#. %s: post author
+#: inc/customizer/callback.php:381 inc/utility/general.php:539
+#: model/app/meta.php:165
+msgid "Author"
+msgstr ""
+
+#: model/widget/profile.php:167
+msgid "Author Profile"
+msgstr ""
+
+#: model/widget/recent.php:174 model/widget/relation.php:175
+msgid "Autoplay"
+msgstr ""
+
+#: inc/customizer/setting/template/footer.php:78
+msgid "Back to Top Button"
+msgstr ""
+
+#: inc/plugin/tgm/plugin-install.php:254
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/plugin/tgm/plugin-install.php:242
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/customizer/setting/template/footer.php:98
+msgid "Blog info at the Bottom of Page"
+msgstr ""
+
+#: inc/customizer/setting/template/singular.php:67
+msgid "Blogcard"
+msgstr ""
+
+#: inc/customizer/setting/template/footer.php:88
+msgid "Breadcrumb"
+msgstr ""
+
+#: inc/setup/tab/support.php:65
+msgid ""
+"Browse the documention for the detailed information regarding the Uikit."
+msgstr ""
+
+#: inc/customizer/section/skin.php:68
+msgid "Button Design"
+msgstr ""
+
+#: inc/utility/general.php:822
+msgid "Card"
+msgstr ""
+
+#: inc/customizer/setting/skin/image.php:94
+msgid "Card Image"
+msgstr ""
+
+#: page-template/template-html-sitemap.php:106 inc/customizer/callback.php:384
+#: inc/setup/widget-area.php:398
+msgid "Categories"
+msgstr ""
+
+#. %s: post date
+#: model/app/meta.php:359
+msgid "Category Links"
+msgstr ""
+
+#: inc/customizer/setting/template/singular.php:68
+msgid "Check here to activate Blogcard Shortcode on Posts."
+msgstr ""
+
+#: inc/customizer/setting/template/sidebar.php:65
+msgid "Check here to activate Fixed Sidebar."
+msgstr ""
+
+#: inc/customizer/setting/template/header.php:74
+msgid "Check here to activate Sticky Header."
+msgstr ""
+
+#: inc/customizer/setting/template/footer.php:79
+msgid "Check here to display \"Back to Top\" Button."
+msgstr ""
+
+#: inc/customizer/setting/template/footer.php:89
+msgid "Check here to display Breadcrumb Navigation."
+msgstr ""
+
+#: inc/customizer/setting/seo/toc.php:67
+msgid "Check here to display TOC on Posts."
+msgstr ""
+
+#: model/widget/base.php:429
+msgid "Choose an Image"
+msgstr ""
+
+#: inc/customizer/callback.php:572 inc/customizer/callback.php:607
+msgid "Circle"
+msgstr ""
+
+#: model/widget/adsence.php:306
+msgid "Code"
+msgstr ""
+
+#: inc/env/comments.php:690 model/data/param.php:342
+msgid "Comment Form"
+msgstr ""
+
+#: inc/customizer/callback.php:386
+msgid "Comments"
+msgstr ""
+
+#: model/app/comments.php:245
+msgid "Comments are Closed!"
+msgstr ""
+
+#. %s: post date
+#: model/app/meta.php:540
+msgid "Comments Links"
+msgstr ""
+
+#: inc/setup/tab/overview.php:89
+msgid ""
+"Contains all the utilities (tools) and functions used to build and enhance "
+"the Windmill theme environment."
+msgstr ""
+
+#: inc/customizer/section/template.php:77
+msgid "Content (Common)"
+msgstr ""
+
+#: inc/customizer/section/basis.php:65
+msgid "Core Library"
+msgstr ""
+
+#: inc/customizer/callback.php:574
+msgid "Cube"
+msgstr ""
+
+#: inc/utility/general.php:541
+msgid "Date"
+msgstr ""
+
+#: model/app/breadcrumb.php:741
+msgid "day"
+msgstr ""
+
+#: inc/plugin/aioseop/aioseop.php:375
+msgid "Description"
+msgstr ""
+
+#: inc/customizer/setting/sns/social.php:84
+msgid "Enable and Reorder SNS Follow Buttons."
+msgstr ""
+
+#: inc/customizer/setting/sns/social.php:74
+msgid "Enable and Reorder SNS Share Buttons."
+msgstr ""
+
+#: inc/customizer/setting/seo/tag.php:96
+msgid "Entry Post Title"
+msgstr ""
+
+#: inc/customizer/setting/template/archive.php:75
+msgid "Excerpt Length"
+msgstr ""
+
+#: inc/customizer/setting/seo/ga.php:100
+msgid "Exclude Logged-in-Users"
+msgstr ""
+
+#: inc/customizer/callback.php:608
+msgid "Flat"
+msgstr ""
+
+#: inc/customizer/setting/skin/sns.php:65
+#: inc/customizer/setting/sns/social.php:83
+msgid "Follow Button"
+msgstr ""
+
+#: inc/customizer/section/basis.php:73
+msgid "Font Family"
+msgstr ""
+
+#: inc/customizer/setting/basis/font.php:76
+msgid "Font for Heading and Title."
+msgstr ""
+
+#: inc/customizer/setting/basis/font.php:66
+msgid "Font for Paragraph Text."
+msgstr ""
+
+#: inc/customizer/section/template.php:112
+msgid "Footer"
+msgstr ""
+
+#: model/widget/recent.php:168 model/widget/relation.php:169
+msgid "Format"
+msgstr ""
+
+#: inc/utility/general.php:821
+msgid "Gallery"
+msgstr ""
+
+#: inc/customizer/setting/skin/image.php:85
+msgid "Gallery Image"
+msgstr ""
+
+#: inc/utility/general.php:819
+msgid "General"
+msgstr ""
+
+#: inc/customizer/setting/skin/image.php:67
+msgid "General Image"
+msgstr ""
+
+#: inc/setup/tab/support.php:73
+msgid "Get help setting up, using, and customising Beans."
+msgstr ""
+
+#: inc/customizer/callback.php:236
+msgid "Global Navigation"
+msgstr ""
+
+#: inc/customizer/setting/seo/ga.php:77
+msgid "Google Analytic Tracking ID"
+msgstr ""
+
+#: inc/customizer/setting/seo/ga.php:90
+msgid "Google Analytics Tracking Code Type"
+msgstr ""
+
+#: inc/customizer/callback.php:434
+msgid "h1 Tag"
+msgstr ""
+
+#: inc/customizer/callback.php:435
+msgid "h2 Tag"
+msgstr ""
+
+#: inc/customizer/callback.php:436
+msgid "h3 Tag"
+msgstr ""
+
+#: inc/customizer/callback.php:437
+msgid "h4 Tag"
+msgstr ""
+
+#: inc/customizer/callback.php:438
+msgid "h5 Tag"
+msgstr ""
+
+#: inc/customizer/callback.php:439
+msgid "h6 Tag"
+msgstr ""
+
+#: inc/customizer/section/template.php:70
+msgid "Header"
+msgstr ""
+
+#: inc/setup/tab/customize.php:60
+msgid "Header, Sidebar, Footer, Content Templates."
+msgstr ""
+
+#: inc/customizer/section/skin.php:75
+msgid "Heading Design"
+msgstr ""
+
+#: inc/customizer/color.php:228
+msgid "Hover Color"
+msgstr ""
+
+#: inc/customizer/callback.php:238
+msgid "HTML Sitemap"
+msgstr ""
+
+#: inc/customizer/setting/template/singular.php:100
+msgid "HTML Sitemap Page"
+msgstr ""
+
+#. Name of the template
+msgid "HTML Sitemap Template"
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://github.com/y2k999"
+msgstr ""
+
+#. URI of the theme
+msgid "https://github.com/y2k999/windmill"
+msgstr ""
+
+#: inc/setup/tab/customize.php:118
+msgid "If you activate Windmill BBS Child Theme, it is recommended to install "
+msgstr ""
+
+#: inc/setup/tab/customize.php:99
+msgid ""
+"If you activate Windmill Parallax Child Theme, it is recommended to install "
+msgstr ""
+
+#: inc/setup/tab/customize.php:109
+msgid ""
+"If you activate Windmill Shop Child Theme, it is recommended to install "
+msgstr ""
+
+#: inc/setup/tab/customize.php:81
+msgid "If you need AMP page, it is recommended to install "
+msgstr ""
+
+#: inc/setup/tab/customize.php:90
+msgid "If you need localization, it is recommended to install "
+msgstr ""
+
+#: model/widget/profile.php:190
+msgid "Image"
+msgstr ""
+
+#: inc/customizer/section/skin.php:82
+msgid "Image Design"
+msgstr ""
+
+#: inc/plugin/tgm/plugin-install.php:198
+msgid "Install Plugins"
+msgstr ""
+
+#: inc/plugin/tgm/plugin-install.php:197
+msgid "Install Required Plugins"
+msgstr ""
+
+#. %s: plugin name.
+#: inc/plugin/tgm/plugin-install.php:200
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: template-part/content/content-none.php:122
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: inc/customizer/setting/seo/tag.php:105
+msgid "Item(Archive List) Title"
+msgstr ""
+
+#: inc/customizer/setting/basis/core.php:66
+msgid "jQuery Version"
+msgstr ""
+
+#: inc/setup/tab/customize.php:59
+msgid "jQuery version, Google Web Fonts."
+msgstr ""
+
+#: inc/plugin/aioseop/aioseop.php:371
+msgid "Keyword"
+msgstr ""
+
+#: inc/customizer/setting/seo/meta.php:94
+msgid "Label Meta on Thumbnail"
+msgstr ""
+
+#: inc/utility/general.php:544
+msgid "Last Modified Date"
+msgstr ""
+
+#: inc/customizer/callback.php:383
+msgid "Last Updated"
+msgstr ""
+
+#: inc/customizer/color.php:218
+msgid "Link Color"
+msgstr ""
+
+#: inc/utility/general.php:820
+msgid "List"
+msgstr ""
+
+#: inc/customizer/setting/skin/image.php:76
+msgid "List Image"
+msgstr ""
+
+#: inc/env/title.php:404
+#, php-format
+msgid "List of %1$s::%2$s"
+msgstr ""
+
+#: inc/env/title.php:330
+#, php-format
+msgid "List of %s"
+msgstr ""
+
+#: inc/env/title.php:436
+msgid "List of Article"
+msgstr ""
+
+#: inc/customizer/setting/basis/core.php:77
+msgid "Load Scripts Asyncronously."
+msgstr ""
+
+#: inc/customizer/setting/basis/core.php:86
+msgid "Load Scripts in Footer"
+msgstr ""
+
+#: inc/setup/tab/customize.php:56
+msgid "Main theme options are available via theme customizer screen."
+msgstr ""
+
+#: inc/customizer/setting/template/archive.php:76
+msgid "Maximum number of words in a Post Excerpt."
+msgstr ""
+
+#: model/widget/profile.php:180
+msgid "Message"
+msgstr ""
+
+#: inc/customizer/setting/template/404.php:74
+msgid "Message Text of 404 Page."
+msgstr ""
+
+#: inc/customizer/setting/seo/toc.php:89
+msgid "Minimum Headings Counts"
+msgstr ""
+
+#: model/app/breadcrumb.php:740 model/app/breadcrumb.php:745
+msgid "month"
+msgstr ""
+
+#: inc/customizer/setting/basis/core.php:87
+msgid "Move Scripts to the Footer and improve Page Load Times."
+msgstr ""
+
+#: model/widget/profile.php:175
+msgid "Name"
+msgstr ""
+
+#: inc/customizer/section/skin.php:89
+msgid "Navigation Design"
+msgstr ""
+
+#: model/app/comments.php:370
+msgid "Next "
+msgstr ""
+
+#: inc/env/content.php:202
+msgid "Next Page"
+msgstr ""
+
+#: inc/customizer/setting/template/content.php:84
+msgid "Not Found Message"
+msgstr ""
+
+#: model/app/title.php:249
+msgid "Nothing Found"
+msgstr ""
+
+#: inc/utility/general.php:540
+msgid "Number of Comments"
+msgstr ""
+
+#: model/widget/recent.php:163 model/widget/relation.php:164
+msgid "Number of Posts to Show"
+msgstr ""
+
+#: inc/customizer/callback.php:237
+msgid "Overlay Search"
+msgstr ""
+
+#: inc/customizer/callback.php:440
+msgid "p Tag"
+msgstr ""
+
+#: inc/env/title.php:445
+msgid "Page"
+msgstr ""
+
+#: model/app/pagination.php:270
+msgid "Page "
+msgstr ""
+
+#: inc/env/content.php:196
+msgid "Page Nav Links"
+msgstr ""
+
+#: inc/utility/general.php:543
+msgid "Page Order"
+msgstr ""
+
+#: inc/customizer/setting/seo/tag.php:87
+#: inc/customizer/setting/skin/heading.php:87
+msgid "Page Title"
+msgstr ""
+
+#: inc/env/head.php:427
+msgid "Pages"
+msgstr ""
+
+#: inc/customizer/setting/skin/nav.php:84
+msgid "Pagination"
+msgstr ""
+
+#: inc/plugin/tgm/plugin-install.php:260
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: inc/utility/general.php:542
+msgid "Post ID"
+msgstr ""
+
+#: inc/customizer/section/seo.php:74
+msgid "Post Meta"
+msgstr ""
+
+#: inc/customizer/setting/seo/meta.php:74
+msgid "Post Meta Item"
+msgstr ""
+
+#: inc/setup/tab/customize.php:61
+msgid "Post Meta, Sectioning Tags, Google Analytic Codes."
+msgstr ""
+
+#: inc/utility/general.php:545
+msgid "Post Name"
+msgstr ""
+
+#: inc/customizer/setting/skin/heading.php:96
+msgid "Post Title"
+msgstr ""
+
+#: inc/utility/general.php:549
+msgid "Post Type"
+msgstr ""
+
+#: inc/env/title.php:279
+#, php-format
+msgid "Post Type Archive List: %s"
+msgstr ""
+
+#: inc/utility/general.php:546
+msgid "Post/Page Parent ID"
+msgstr ""
+
+#: inc/customizer/callback.php:573
+msgid "Postit"
+msgstr ""
+
+#: inc/env/content.php:203
+msgid "Previous Page"
+msgstr ""
+
+#: inc/customizer/setting/skin/button.php:66
+msgid "Primary Button"
+msgstr ""
+
+#: inc/customizer/setting/basis/font.php:65
+msgid "Primary Font"
+msgstr ""
+
+#: inc/customizer/setting/skin/nav.php:66
+msgid "Primary Navigation"
+msgstr ""
+
+#: inc/customizer/setting/template/header.php:84
+msgid "Prints icons on Topbar."
+msgstr ""
+
+#: inc/customizer/setting/seo/meta.php:85
+msgid "Prints Meta information on Archive List."
+msgstr ""
+
+#: inc/customizer/setting/seo/meta.php:75
+msgid "Prints Meta information on Single Posts."
+msgstr ""
+
+#. %s: post date
+#: model/app/meta.php:231
+msgid "Published"
+msgstr ""
+
+#: inc/customizer/callback.php:382
+msgid "Published Date"
+msgstr ""
+
+#: inc/utility/general.php:547
+msgid "Random Order"
+msgstr ""
+
+#: inc/customizer/default.php:388
+msgid "Read More"
+msgstr ""
+
+#: inc/customizer/setting/template/archive.php:65
+msgid "Readmore Text"
+msgstr ""
+
+#. 1: Link to WP admin new post page.
+#: template-part/content/content-none.php:101
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: inc/setup/widget-area.php:397 model/widget/recent.php:155
+msgid "Recent Posts"
+msgstr ""
+
+#: inc/customizer/callback.php:605
+msgid "Rectangle"
+msgstr ""
+
+#: model/widget/relation.php:156
+msgid "Related Posts"
+msgstr ""
+
+#: inc/env/title.php:376
+#, php-format
+msgid "Result of \"%s\""
+msgstr ""
+
+#: inc/plugin/tgm/plugin-install.php:259
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: searchform.php:55 inc/setup/widget-area.php:396
+msgid "Search"
+msgstr ""
+
+#: model/app/breadcrumb.php:766
+msgid "Search Results "
+msgstr ""
+
+#: inc/env/title.php:289
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: inc/customizer/setting/skin/button.php:75
+msgid "Secondary Button"
+msgstr ""
+
+#: inc/customizer/setting/basis/font.php:75
+msgid "Secondary Font"
+msgstr ""
+
+#: inc/customizer/setting/skin/nav.php:75
+msgid "Secondary Navigation"
+msgstr ""
+
+#: inc/customizer/section/seo.php:81
+msgid "Sectioning Tag"
+msgstr ""
+
+#: model/widget/base.php:429
+msgid "Select an Image"
+msgstr ""
+
+#: inc/customizer/setting/seo/meta.php:95
+msgid "Select Label Meta to be displayed on Thumbnail."
+msgstr ""
+
+#: inc/customizer/setting/template/singular.php:101
+msgid "Select the page to display HTML sitemap."
+msgstr ""
+
+#: inc/plugin/aioseop/aioseop.php:249
+msgid "SEO Settings"
+msgstr ""
+
+#: inc/customizer/setting/seo/ga.php:68
+msgid "Set Google Analytic Code in the Theme."
+msgstr ""
+
+#: inc/customizer/setting/skin/sns.php:74
+#: inc/customizer/setting/sns/social.php:73
+msgid "Share Button"
+msgstr ""
+
+#: model/data/param.php:680
+msgid "Share This Article"
+msgstr ""
+
+#: inc/customizer/setting/seo/toc.php:76
+#: inc/customizer/setting/template/singular.php:87
+msgid "Shortcode Tag"
+msgstr ""
+
+#: inc/customizer/section/template.php:105
+msgid "Sidebar"
+msgstr ""
+
+#: inc/customizer/section/template.php:91
+msgid "Single Posts/Pages"
+msgstr ""
+
+#: inc/customizer/setting/seo/tag.php:78
+#: inc/customizer/setting/skin/heading.php:78
+msgid "Site Description"
+msgstr ""
+
+#: inc/customizer/setting/seo/tag.php:69
+#: inc/customizer/setting/skin/heading.php:69
+msgid "Site Title"
+msgstr ""
+
+#: model/widget/adsence.php:293
+msgid "Size"
+msgstr ""
+
+#: header.php:87
+msgid "Skip to Content."
+msgstr ""
+
+#: inc/customizer/section/skin.php:96
+msgid "SNS Design"
+msgstr ""
+
+#: inc/setup/tab/customize.php:62
+msgid "SNS Services for Social Share and Follow"
+msgstr ""
+
+#: inc/customizer/section/sns.php:65
+msgid "SNS Settings"
+msgstr ""
+
+#: inc/customizer/section/sns.php:72
+msgid "SNS Urls"
+msgstr ""
+
+#: inc/plugin/tgm/plugin-install.php:203
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: template-part/content/content-none.php:118
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: model/widget/adsence.php:290
+msgid "Sponsored Link"
+msgstr ""
+
+#: inc/customizer/callback.php:571 inc/customizer/callback.php:606
+msgid "Square"
+msgstr ""
+
+#: page-template/template-html-sitemap.php:97 model/app/html-sitemap.php:126
+msgid "Static Pages"
+msgstr ""
+
+#: inc/customizer/setting/template/header.php:73
+msgid "Static(Fixed) Header"
+msgstr ""
+
+#: inc/customizer/setting/template/sidebar.php:64
+msgid "Sticky(Fixed) Sidebar"
+msgstr ""
+
+#: inc/setup/tab/overview.php:68
+msgid ""
+"Stores <strong>PO</strong> and <strong>MO</strong> files for translators to "
+"localize the theme."
+msgstr ""
+
+#: inc/setup/tab/overview.php:67
+msgid ""
+"Stores custom <strong>css</strong>, <strong>LESS</strong> and <strong>"
+"javascript</strong> files for the <a href =\"https://www.getbeans."
+"io/documentation/api/compiler/\" target=\"_blank\">Beans Compiler API</a> "
+"and <a href=\"https://wordpress.org/gutenberg/\" target=\"_blank\">"
+"Gutenberg</a> editor. The <strong>php</strong> codes that describes inline "
+"css are also stored here."
+msgstr ""
+
+#: inc/setup/tab/overview.php:122
+msgid ""
+"Stores the partial files often called by using <a href=\"https://developer."
+"wordpress.org/reference/functions/get_template_part/\" target=\"_blank\">"
+"get_template_part()</a> in WordPress, e.g. loop.php, navigation.php."
+msgstr ""
+
+#: inc/setup/tab/overview.php:111
+msgid ""
+"Stores the structure files handle the page structural markup (html, head, "
+"body etc.) and hooks."
+msgstr ""
+
+#: inc/customizer/setting/template/archive.php:66
+msgid "String in the \"more\" link displayed after a Trimmed Excerpt."
+msgstr ""
+
+#: inc/setup/tab/customize.php:63
+msgid "Styles and Hover Effects for Thumbnail, Buttons, Headings."
+msgstr ""
+
+#: model/data/param.php:821 inc/customizer/section/seo.php:88
+#: inc/customizer/setting/seo/toc.php:66
+msgid "Table of Contents"
+msgstr ""
+
+#: inc/customizer/setting/seo/toc.php:77
+msgid "Tag (Literal) to be searched in Post."
+msgstr ""
+
+#: inc/customizer/setting/template/singular.php:88
+msgid "Tag (Literal) to be searched in Posts."
+msgstr ""
+
+#. %s: post date
+#: model/app/meta.php:452
+msgid "Tag Links"
+msgstr ""
+
+#: inc/customizer/callback.php:385
+msgid "Tags"
+msgstr ""
+
+#: inc/customizer/setting/skin/button.php:84
+msgid "Tertiary Button"
+msgstr ""
+
+#: inc/customizer/color.php:207
+msgid "Text Color"
+msgstr ""
+
+#: inc/setup/tab/overview.php:101
+msgid ""
+"The application and widget files handle the theme content and are split into "
+"multiple functions (fragments). These components are attached to the "
+"structural hooks, making it easy to move them around, make changes or remove "
+"them completely."
+msgstr ""
+
+#: inc/plugin/tgm/plugin-install.php:216
+#, php-format
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgid_plural ""
+"The following plugins need to be updated to their latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/plugin/tgm/plugin-install.php:236
+#, php-format
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#. 'notice_ask_to_update_maybe' => _n_noop(
+#. 1: plugin name(s).
+#. 'There is an update available for: %1$s.',
+#. 'There are updates available for the following plugins: %1$s.',
+#. 'windmill'
+#. ),
+#: inc/plugin/tgm/plugin-install.php:230
+#, php-format
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/setup/widget-area.php:149
+msgid "The primary widget area, most often used as a sidebar."
+msgstr ""
+
+#: inc/setup/widget-area.php:200
+msgid "The primary widget area, most often used in content area."
+msgstr ""
+
+#: inc/setup/widget-area.php:166
+msgid "The primary widget area, most often used in footer area."
+msgstr ""
+
+#: inc/setup/widget-area.php:183
+msgid "The primary widget area, most often used in header area."
+msgstr ""
+
+#: inc/setup/tab/overview.php:79
+msgid ""
+"The render files are where all aspects of the theme is rendered, from "
+"registering menus and widget areas to loading structural template and "
+"fragment files."
+msgstr ""
+
+#: inc/customizer/default.php:399
+msgid "The requested URL was Not Found on this Server."
+msgstr ""
+
+#: inc/env/secure.php:276
+msgid "The REST API on this site has been disabled."
+msgstr ""
+
+#: inc/setup/widget-area.php:153
+msgid "The secondary widget area, most often used as a sidebar."
+msgstr ""
+
+#: inc/setup/widget-area.php:204
+msgid "The secondary widget area, most often used in content area."
+msgstr ""
+
+#: inc/setup/widget-area.php:170
+msgid "The secondary widget area, most often used in footer area."
+msgstr ""
+
+#: inc/setup/widget-area.php:187
+msgid "The secondary widget area, most often used in header area."
+msgstr ""
+
+#: inc/setup/tab/support.php:81
+msgid "The Unofficial Beans learning site by Paal Joachim."
+msgstr ""
+
+#: inc/setup/tab/overview.php:90
+msgid "Theme Customizer settings and class Autloader files are stored here."
+msgstr ""
+
+#: inc/setup/tab/overview.php:112
+msgid ""
+"These files are often called by using WordPress Template-Tags, like <a "
+"href=\"https://developer.wordpress.org/reference/functions/get_header/\" "
+"target=\"_blank\">get_header()</a>, <a href=\"https://developer.wordpress."
+"org/reference/functions/get_sidebar/\" target=\"_blank\">get_sidebar()</a>, "
+"<a href=\"https://developer.wordpress.org/reference/functions/get_footer/\" "
+"target=\"_blank\">get_footer()</a>."
+msgstr ""
+
+#: comments.php:31
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: inc/plugin/tgm/plugin-install.php:210
+#, php-format
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/plugin/tgm/plugin-install.php:204
+#, php-format
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#. %s: WordPress Version.
+#: inc/setup/back-compat.php:70 inc/setup/back-compat.php:102
+#: inc/setup/back-compat.php:136
+#, php-format
+msgid ""
+"This theme requires WordPress 5.3 or newer. You are running version %s. "
+"Please upgrade."
+msgstr ""
+
+#: inc/utility/general.php:548 model/widget/adsence.php:288
+#: model/widget/profile.php:165 model/widget/recent.php:153
+#: model/widget/relation.php:154 inc/plugin/aioseop/aioseop.php:367
+msgid "Title"
+msgstr ""
+
+#: inc/customizer/setting/template/404.php:65
+msgid "Title Text of 404 Page."
+msgstr ""
+
+#: inc/setup/tab/customize.php:75
+msgid ""
+"To take full advanctage of the theme features, it is recommended to install "
+msgstr ""
+
+#: inc/customizer/setting/seo/toc.php:90
+msgid ""
+"TOC will not be displayed if the number of Headings of the current post is "
+"below this number."
+msgstr ""
+
+#: inc/customizer/setting/template/header.php:83
+msgid "Topbar Icons"
+msgstr ""
+
+#. Name of the template
+msgid "Toppage Template"
+msgstr ""
+
+#: inc/customizer/setting/template/singular.php:77
+msgid "Type"
+msgstr ""
+
+#: model/widget/base.php:429
+msgid "Update Image"
+msgstr ""
+
+#. %s: post date
+#: model/app/meta.php:292
+msgid "Updated"
+msgstr ""
+
+#: inc/customizer/setting/template/content.php:66
+#: inc/customizer/setting/template/content.php:75
+msgid "Upload Image File"
+msgstr ""
+
+#: inc/customizer/setting/seo/ga.php:67
+msgid "Use Google Analytic"
+msgstr ""
+
+#: inc/customizer/setting/basis/core.php:67
+msgid "Use jQuery Core via CDN."
+msgstr ""
+
+#: inc/customizer/default.php:385
+msgid "Whoops, the Requested Post was Not Found."
+msgstr ""
+
+#: inc/customizer/setting/seo/tag.php:114
+#: inc/customizer/setting/skin/heading.php:114
+msgid "Widget Title"
+msgstr ""
+
+#. Name of the theme
+msgid "Windmill"
+msgstr ""
+
+#. Description of the theme
+msgid ""
+"Windmill is starter theme based on the Beans Framework that is one of the "
+"greatest WordPress theme framework by Terry Muller.This theme offers minimum "
+"functionalities and styles, you can easily use this theme as starting point "
+"of developing you original theme.So don’t use it as parent theme, instead "
+"try turning it into your next amazing theme.When you aren't developer, don't "
+"worry - by utilizing Uikit3 modern design, this theme with basic styling is "
+"also ready to go out of box."
+msgstr ""
+
+#: inc/setup/tab/overview.php:54
+msgid ""
+"Windmill Theme folder contains a number of sub-folders. Below is a table of "
+"each folder and description."
+msgstr ""
+
+#: inc/setup/tab/support.php:55 inc/setup/tab/support.php:64
+msgid "Windmill Theme is based on"
+msgstr ""
+
+#. Author of the theme
+msgid "y2k999"
+msgstr ""
+
+#: model/app/breadcrumb.php:733 model/app/breadcrumb.php:744
+#: model/app/breadcrumb.php:748
+msgid "year"
+msgstr ""
+
+#: inc/setup/tab/childtheme.php:33 inc/setup/tab/customize.php:33
+#: inc/setup/tab/overview.php:33 inc/setup/tab/support.php:33
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: inc/env/comments.php:488
+msgid "Your Comment is Awaiting Moderation."
+msgstr ""

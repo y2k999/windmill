@@ -1,0 +1,38 @@
+/**
+Component: blockquote
+*/
+
+/* Definition
+ ======================================== */
+.uk-article .entry-content blockquote{
+	position: relative;
+	margin: 2rem 1rem;
+	padding: 1rem;
+	box-sizing: border-box;
+	font-style: italic;
+	font-size: 0.85rem;
+	color: #464646;
+	border-left: solid 3rem #3ca5d4;
+	background: #e0f5ff;
+}
+.uk-article .entry-content blockquote:before{
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: -2rem;
+	transform: translateY(-50%);
+	content: "\02666";
+	color: #fff;
+	font-size: 1rem;
+	line-height: 1;
+}
+.uk-article .entry-content blockquote p{
+	position: relative;
+	z-index: 3;
+}
+.uk-article .entry-content blockquote cite{
+	display: block;
+	text-align: right;
+	color: #888888;
+	font-size: 0.7rem;
+}

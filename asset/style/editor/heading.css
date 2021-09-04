@@ -1,0 +1,70 @@
+@charset "utf-8";
+/**
+Editor style of Windmill WordPress Theme.
+https://github.com/y2k999/windmill
+GNU General Public License v3 or later
+http://www.gnu.org/licenses/gpl-3.0.en.html
+ */
+
+/**
+[NOTE]
+This theme requires the Beans Extension plugin.
+https://github.com/y2k999/beans-extension
+It is recommended to configure the plugin in the "Uikit Version" section of the first tab ("Preview" panel).
+1. For the "Range of Uikit2 components to use" setting, select "Load only normalize.css" option.
+2. For the "Use Uikit3 via CDN" setting, check the checkbox.
+3. Submit the save button.
+*/
+
+/* HEADING
+ * ============================================================
+ */
+h2[data-type="core/heading"],
+h3[data-type="core/heading"],
+h4[data-type="core/heading"],
+h5[data-type="core/heading"],
+h6[data-type="core/heading"]{
+	font-family: "Playfair Display";
+	font-weight: normal;
+	text-transform: none;
+}
+h2[data-type="core/heading"]{
+	font-size: 1.8rem;
+	line-height: 1.75;
+	padding: 0.5rem 0 0.75rem 1rem;
+	border-left: 0.5rem solid #5c9ee7;
+	border-bottom: 1px solid #5c9ee7;
+}
+h3[data-type="core/heading"]{
+	font-size: 1.6rem;
+	line-height: 1.75;
+	padding: 0.75rem 1rem;
+	background-color: #5c9ee7;
+	border-bottom: 1px solid #e5e5e5;
+}
+h4[data-type="core/heading"]{
+	font-size: 1.4rem;
+	line-height: 1.75;
+	position: relative;
+	padding-bottom: 0.75rem;
+	border-bottom: solid 2px #e5e5e5;
+	position: absolute;
+	bottom: -2px;
+	content: " ";
+	display: block;
+	width: 25%;
+	border-bottom: solid 2px #5c9ee7;
+}
+h5[data-type="core/heading"]{
+	font-size: 1.2rem;
+	line-height: 1.75;
+	padding: 0.5rem;
+	background: linear-gradient(transparent 90%,#fff100 70%);
+}
+h6[data-type="core/heading"]{
+	font-size: 1rem;
+	line-height: 1.75;
+	padding: 0.75rem 1rem;
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+}

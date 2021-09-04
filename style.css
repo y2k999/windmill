@@ -1,0 +1,134 @@
+@charset "utf-8";
+/**
+Theme Name: Windmill
+Theme URI: https://github.com/y2k999/windmill
+Author: y2k999
+Author URI: https://github.com/y2k999
+Description: Windmill is starter theme based on the Beans Framework that is one of the greatest WordPress theme framework by Terry Muller.This theme offers minimum functionalities and styles, you can easily use this theme as starting point of developing you original theme.So don’t use it as parent theme, instead try turning it into your next amazing theme.When you aren't developer, don't worry - by utilizing Uikit3 modern design, this theme with basic styling is also ready to go out of box.
+Tags: one-column, two-columns, right-sidebar, flexible-header, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, theme-options, threaded-comments, translation-ready, block-patterns
+Text Domain: windmill
+Requires at least: 5.3
+Tested up to: 5.7.1
+Requires PHP: 5.6
+Version: 1.0.1
+License: GNU General Public License v3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.en.html
+ */
+
+/**
+[NOTE]
+This theme requires the Beans Extension plugin.
+https://github.com/y2k999/beans-extension
+It is recommended to configure the plugin in the "Uikit Version" section of the first tab ("Preview" panel).
+1. For the "Range of Uikit2 components to use" setting, select "Load only normalize.css" option.
+2. For the "Use Uikit3 via CDN" setting, check the checkbox.
+3. Submit the save button.
+*/
+
+/**
+ * --------------- TABLE OF CONTENTS ---------------
+ *
+ 1. TYPOGRAPHY
+ 2. ALIGNMENTS
+ 3. ACCESSIBILITY
+ 4. FORMS
+ 5. ELEMENTS
+ 6. COMMENTS
+ 7. NAVIGATION
+ 8. CONTENT
+ 9. WIDGETS
+ 10. CAPTIONS
+ 11. GALLERIES
+ ------------------------------------------------------------*/
+
+/* 1. TYPOGRAPHY
+ * ============================================================
+ */
+
+/* 2. ALIGNMENTS
+ * =============================================================
+ */
+.alignleft{}
+.alignright{}
+.aligncenter{}
+
+
+/* 30 ACCESSIBILITY
+ * ============================================================
+ */
+/* Text meant only for screen readers. */
+.screen-reader-text{
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+.screen-reader-text:active,
+.screen-reader-text:focus{
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+	/* Above WP toolbar. */
+}
+
+/* 40 FORMS
+ * ============================================================
+ */
+
+/* 5. ELEMENTS
+ * ============================================================
+ */
+
+/* 6. COMMENTS
+ * ============================================================
+ */
+
+/* 7. NAVIGATION
+ * ============================================================
+ */
+
+/* 8. CONTENT
+ * ============================================================
+ */
+.bypostauthor{}
+.sticky{}
+
+/* 9. WIDGETS
+ * ============================================================
+ */
+
+
+/* 10. CAPTIONS
+ * ============================================================
+ */
+.wp-caption{}
+.wp-caption img[class*="wp-image-"]{}
+.wp-caption .wp-caption-text{}
+.gallery-columns-6 .gallery-caption,
+.gallery-columns-7 .gallery-caption,
+.gallery-columns-8 .gallery-caption,
+.gallery-columns-9 .gallery-caption{}
+.gallery-caption{}
+.gallery-caption::before{}
+
+/* 11. GALLERIES
+ * ============================================================
+ */
+.gallery{}
+[class*="gallery-"]{}
+.gallery-item{}
