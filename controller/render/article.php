@@ -213,11 +213,11 @@ class _render_article
 		*/
 		return beans_apply_filters("_filter[{$class}][{$function}]",array(
 			'archive' => 'uk-padding-small uk-position-relative entry-content',
-			'home' => 'uk-child-width-1-2 uk-padding-small uk-position-relative entry-content',
-			'none' => 'uk-padding-small entry-content',
-			'page' => 'uk-padding-small entry-content',
-			'search' => 'uk-child-width-1-2 uk-padding-small uk-position-relative entry-content',
-			'single' => 'uk-padding uk-padding-remove-top entry-content',
+			'home' => 'uk-padding-small uk-position-relative entry-content',
+			'none' => 'uk-padding-small uk-position-relative entry-content',
+			'page' => 'uk-padding-small uk-position-relative entry-content',
+			'search' => 'uk-padding-small uk-position-relative entry-content',
+			'single' => 'uk-padding-small uk-position-relative entry-content',
 		));
 
 	}// Method

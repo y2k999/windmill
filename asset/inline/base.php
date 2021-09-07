@@ -293,7 +293,7 @@ class _inline_base
 		$this->css->set_selector('ul');
 		$this->css->add_properties(array(
 			'line-height' => '1.75',
-			'list-style-type' => 'none',
+			// 'list-style-type' => 'none',
 		));
 
 		// Add a single property.

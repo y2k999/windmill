@@ -429,7 +429,7 @@ class _fragment_image
 		if(!isset($needle)){return;}
 
 		$class = self::$_class;
-		$function = __utility_get_function(__FUNCTION__);
+		// $function = __utility_get_function(__FUNCTION__);
 
 		switch($needle){
 			case 'archive' :
@@ -441,9 +441,12 @@ class _fragment_image
 				 * @reference (Uikit)
 				 * 	https://getuikit.com/docs/card
 				*/
-				beans_open_markup_e("_image[{$class}][{$function}][{$needle}]",'div',array('class' => 'uk-card-media'));
+				$layout = beans_get_layout_setting('archive');
+				beans_open_markup_e("_image[{$class}][{$needle}]",'div',array(
+					'class' => $layout === 'card' ? 'uk-card-media' : 'uk-card-media-left uk-width-auto'
+				));
 					self::__activate_application(self::$_index,self::$_param[$needle]);
-				beans_close_markup_e("_image[{$class}][{$function}][{$needle}]",'div');
+				beans_close_markup_e("_image[{$class}][{$needle}]",'div');
 				break;
 
 			case 'home' :
@@ -456,9 +459,12 @@ class _fragment_image
 				 * @reference (Uikit)
 				 * 	https://getuikit.com/docs/card
 				*/
-				beans_open_markup_e("_image[{$class}][{$function}][{$needle}]",'div',array('class' => 'uk-card-media-left'));
+				$layout = beans_get_layout_setting('home');
+				beans_open_markup_e("_image[{$class}][{$needle}]",'div',array(
+					'class' => $layout === 'list' ? 'uk-card-media-left uk-width-auto' : 'uk-card-media'
+				));
 					self::__activate_application(self::$_index,self::$_param[$needle]);
-				beans_close_markup_e("_image[{$class}][{$function}][{$needle}]",'div');
+				beans_close_markup_e("_image[{$class}][{$needle}]",'div');
 				break;
 
 			case 'gallery' :

@@ -215,7 +215,7 @@ class _structure_archive
 		 * 	https://www.getbeans.io/code-reference/functions/beans_open_markup_e/
 		 * 	https://www.getbeans.io/code-reference/functions/beans_close_markup_e/
 		*/
-		beans_open_markup_e("_wrap[{$class}][{$function}]",'div',array('class' => 'uk-height-small'));
+		beans_open_markup_e("_wrap[{$class}][{$function}]",'div',array('class' => 'uk-height-small uk-width-expand'));
 			/**
 			 * @reference (WP)
 			 * 	Display the post excerpt.

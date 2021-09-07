@@ -199,13 +199,22 @@ class _structure_search
 	{
 		if(!is_search()){return;}
 
+		$class = self::$_class;
+		$function = __utility_get_function(__FUNCTION__);
+
 		/**
+		 * @reference (Beans)
+		 * 	HTML markup.
+		 * 	https://www.getbeans.io/code-reference/functions/beans_open_markup_e/
+		 * 	https://www.getbeans.io/code-reference/functions/beans_close_markup_e/
 		 * @reference (WP)
 		 * 	Display the post excerpt.
 		 * 	https://developer.wordpress.org/reference/functions/the_excerpt/
 		*/
-		the_excerpt();
-		// self::__activate_application('excerpt');
+		beans_open_markup_e("_image[{$class}][{$function}]",'div',array('class' => 'uk-width-expand'));
+			the_excerpt();
+			// self::__activate_application('excerpt');
+		beans_close_markup_e("_image[{$class}][{$function}]",'div');
 
 	}// Method
 
