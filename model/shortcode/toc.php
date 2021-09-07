@@ -279,7 +279,8 @@ class _shortcode_toc
 				// 同じlevelの場合、liタグを閉じ、新しく開きます。
 				if($current_level == $level){
 					// $outline .= '</li><li class="outline__item">';
-					$outline .= '</li><li class="uk-padding-small uk-padding-remove-bottom">';
+					// $outline .= '</li><li class="uk-padding-small uk-padding-remove-bottom">';
+					$outline .= '</li><li class="uk-padding-small uk-padding-remove-vertical">';
 				}
 				else{
 					// 同じlevelでない場合は、ul, liタグを追加していきます。
@@ -287,7 +288,8 @@ class _shortcode_toc
 					while($current_level < $level){
 						$current_level++;
 						// $outline .= sprintf('<ul class="outline__list outline__list-%s"><li class="outline__item">',$current_level);
-						$outline .= sprintf('<ul class="uk-list outline-list-%s"><li class="uk-padding-small uk-padding-remove-bottom">',$current_level);
+						// $outline .= sprintf('<ul class="uk-list outline-list-%s"><li class="uk-padding-small uk-padding-remove-bottom">',$current_level);
+						$outline .= sprintf('<ul class="uk-list outline-list-%s"><li class="uk-padding-small uk-padding-remove-vertical">',$current_level);
 					}
 
 					// 見出しのレベルが変わった場合は、現在のレベル以下の出現回数をリセットします。

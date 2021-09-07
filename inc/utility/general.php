@@ -478,6 +478,7 @@ require_once (trailingslashit(get_template_directory()) . 'inc/utility/sanitize.
 			@reference
 				[Parent]/inc/env/xml-sitemap.php
 		*/
+		$return = array();
 		$categories = get_categories();
 		foreach($categories as $category){
 			$return[$category->slug] = $category->name;
@@ -1032,7 +1033,9 @@ require_once (trailingslashit(get_template_directory()) . 'inc/utility/sanitize.
 			 * 	Retrieves post data given a post ID or post object.
 			 * 	https://developer.wordpress.org/reference/functions/get_post/
 			*/
-			$post = get_post($wp_query->post->ID);
+			if($wp_query->post){
+				$post = get_post($wp_query->post->ID);
+			}
 		}
 		return $post;
 

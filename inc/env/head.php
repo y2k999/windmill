@@ -344,17 +344,19 @@ class _env_head
 		*/
 		if(is_admin()){return;}
 
+		// Get current post data.
+		global $post;
+		if(empty($post)){
+			$post = __utility_get_post_object();
+		}
+		if(empty($post)){return;}
+
 		$class = self::$_class;
 		$function = __utility_get_function(__FUNCTION__);
 
 		$keywords = '';
 
 		if(isset($this->field['keywords'])){
-			// Get current post data.
-			global $post;
-			if(empty($post)){
-				$post = __utility_get_post_object();
-			}
 			$keywords = get_post_meta($post->ID,$this->field['keywords'],TRUE);
 		}
 
@@ -393,16 +395,21 @@ class _env_head
 		*/
 		if(is_admin()){return;}
 
+		// Get current post data.
+		global $post;
+		if(empty($post)){
+			$post = __utility_get_post_object();
+		}
+		if(empty($post)){return;}
+
 		$class = self::$_class;
 		$function = __utility_get_function(__FUNCTION__);
 
 		// Get current post data.
 		$post_content = get_the_content();
 		if(!$post_content){
-			$post = __utility_get_post_object();
 			$post_content = $post->content;
 		}
-
 		$post_id = get_the_id();
 		if(!$post_id){
 			$post_id = $post->ID;
@@ -427,7 +434,6 @@ class _env_head
 				$description = __('Pages','windmill') . ' ' . $paged . ' | ' . $description;
 			}
 		}
-
 		elseif(is_singular()){
 			// Check the custom field.
 			$description = get_post_meta($post_id,$this->field['description'],TRUE);

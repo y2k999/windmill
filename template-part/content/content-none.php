@@ -115,11 +115,11 @@ ______________________________
 		*/
 		}
 		elseif(is_search()){
-			echo apply_filters("_output[content][{$index}][is_search]",__('Sorry, but nothing matched your search terms. Please try again with some different keywords.','windmill'))
+			echo apply_filters("_output[content][{$index}][is_search]",__('Sorry, but nothing matched your search terms. Please try again with some different keywords.','windmill'));
 			get_search_form();
 		}
 		else{
-			echo apply_filters("_output[content][{$index}][general]",__('It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.','windmill'))
+			echo apply_filters("_output[content][{$index}][general]",__('It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.','windmill'));
 			get_search_form();
 		}
 		?>
