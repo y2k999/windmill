@@ -172,6 +172,7 @@ class _setup_gutenberg
 		 * 	https://developer.wordpress.org/reference/functions/apply_filters/
 		*/
 		return apply_filters("_filter[{$class}][{$function}]",array(
+			'custom-style-base' => URI['style'] . 'editor/base.css',
 			'custom-style-blockquote' => URI['style'] . 'editor/blockquote.css',
 			'custom-style-heading' => URI['style'] . 'editor/heading.css',
 		));

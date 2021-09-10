@@ -1,0 +1,28 @@
+@charset "utf-8";
+/**
+Editor style of Windmill WordPress Theme.
+https://github.com/y2k999/windmill
+GNU General Public License v3 or later
+http://www.gnu.org/licenses/gpl-3.0.en.html
+ */
+
+/**
+[NOTE]
+This theme requires the Beans Extension plugin.
+https://github.com/y2k999/beans-extension
+It is recommended to configure the plugin in the "Uikit Version" section of the first tab ("Preview" panel).
+1. For the "Range of Uikit2 components to use" setting, select "Load only normalize.css" option.
+2. For the "Use Uikit3 via CDN" setting, check the checkbox.
+3. Submit the save button.
+*/
+
+/* BASE
+ * ============================================================
+ */
+.editor-post-title__block .editor-post-title__input{
+	font-family: "Playfair Display";
+	font-weight: normal;
+	font-size: 1.8rem;
+	line-height: 1.75;
+}
+
