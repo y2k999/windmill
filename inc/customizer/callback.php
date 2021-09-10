@@ -538,6 +538,7 @@ class _customizer_callback
 			'instagram' => esc_html('Instagram'),
 			'github' => esc_html('Github'),
 			'youtube' => esc_html('YouTube'),
+			'mail' => esc_html('Mail'),
 		));
 
 	}// Method

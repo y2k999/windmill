@@ -400,6 +400,8 @@ if(!defined('COLOR')){
 		'wordpress-hover' => '#325a8c',
 		'google' => '#dd4b39',
 		'google-hover' => '#bb4237',
+		'mail' => '#dd4b39',
+		'mail-hover' => '#bb4237',
 	));
 }
 

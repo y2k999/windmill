@@ -432,28 +432,21 @@ class _app_title
 			'class' => 'uk-heading-divider',
 			'itemprop' => 'headline name',
 		));
-		$after = beans_close_markup("_tag[{$class}][{$needle}]",'h5');
-
-		/**
-		 * @reference (WP)
-		 * 	https://developer.wordpress.org/reference/functions/the_title/
-		 * @reference (Beans)
-		 * 	HTML markup.
-		 * 	https://www.getbeans.io/code-reference/functions/beans_open_markup_e/
-		 * 	https://www.getbeans.io/code-reference/functions/beans_close_markup_e/
-		*/
-		beans_open_markup_e("_link[{$class}][{$needle}]",'a',array(
+		$before .= beans_open_markup("_link[{$class}][{$needle}]",'a',array(
 			'href' => get_permalink($post->ID),
 			'title' => the_title_attribute('echo=0'),
 			'itemprop' => 'url',
 		));
-			/**
-			 * @reference (WP)
-			 * 	Display or retrieve the current post title with optional markup.
-			 * 	https://developer.wordpress.org/reference/functions/the_title/
-			*/
-			the_title($before,$after);
-		beans_close_markup_e("_link[{$class}][{$needle}]",'a');
+
+		$after = beans_close_markup("_link[{$class}][{$needle}]",'a');
+		$after .= beans_close_markup("_tag[{$class}][{$needle}]",'h5');
+
+		/**
+		 * @reference (WP)
+		 * 	Display or retrieve the current post title with optional markup.
+		 * 	https://developer.wordpress.org/reference/functions/the_title/
+		*/
+		the_title($before,$after);
 
 	}// Method
 

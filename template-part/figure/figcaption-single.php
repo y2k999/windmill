@@ -47,7 +47,6 @@ ______________________________
  * @reference (Beans)
  * 	HTML markup.
  * 	https://www.getbeans.io/code-reference/functions/beans_open_markup_e/
- * 	https://www.getbeans.io/code-reference/functions/beans_output_e/
  * 	https://www.getbeans.io/code-reference/functions/beans_close_markup_e/
  */
 beans_open_markup_e("_figcaption[{$index}][{$needle}]",'div',array('class' => $args['skin']));
@@ -55,12 +54,14 @@ beans_open_markup_e("_figcaption[{$index}][{$needle}]",'div',array('class' => $a
 	do_action(HOOK_POINT['figure']['title']);
 	// the_title('<h4 class="uk-heading-divider">','</h4>');
 
-	/**
-		@hooked
-			_fragment_meta::__the_caption()
-		@reference
-			[Parent]/controller/fragment/meta.php
-	*/
-	do_action(HOOK_POINT['figure']['meta']);
+	beans_open_markup_e("_meta[{$index}][{$needle}]",'p',array('class' => 'uk-article-meta'));
+		/**
+			@hooked
+				_fragment_meta::__the_caption()
+			@reference
+				[Parent]/controller/fragment/meta.php
+		*/
+		do_action(HOOK_POINT['figure']['meta']);
+	beans_close_markup_e("_meta[{$index}][{$needle}]",'p');
 
 beans_close_markup_e("_figcaption[{$index}][{$needle}]",'div');

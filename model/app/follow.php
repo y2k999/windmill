@@ -252,9 +252,15 @@ class _app_follow
 		 * 	https://www.getbeans.io/code-reference/functions/beans_close_markup_e/
 		*/
 		foreach($this->icon as $key => $value){
+			if($key === 'mail'){
+				$href = get_bloginfo('admin_mail');
+			}
+			else{
+				$href = __utility_get_option('url_' . $key);
+			}
 			beans_open_markup_e("_link[{$class}][{$key}]",'a',array(
 				'class' => self::$_index . '-' . $key,
-				'href' => __utility_get_option('url_' . $key),
+				'href' => $href,
 				'target' => '_blank',
 				'title' => $key,
 				'aria-label' => ucfirst($key),

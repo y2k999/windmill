@@ -320,6 +320,7 @@ class _customizer_default
 			get_the_author_meta('instagram',$this->user_id) ? 'instagram:1' : 'instagram:0',
 			get_the_author_meta('github',$this->user_id) ? 'github:1' : 'github:0',
 			get_the_author_meta('youtube',$this->user_id) ? 'youtube:1' : 'youtube:0',
+			!empty(get_bloginfo('admin_email')) ? 'mail:1' : 'mail:0',
 		) as $item){
 			$return[] = $item;
 		}

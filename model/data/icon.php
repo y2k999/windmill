@@ -134,6 +134,7 @@ class _data_icon
 				// LINE
 				'line' => ' comments',
 				'linkedin' => 'linkedin',
+				'mail' => 'mail',
 				'paypal' => 'paypal',
 				'pinterest' => 'pinterest',
 				'reddit' => 'reddit',
@@ -181,6 +182,7 @@ class _data_icon
 				'html-sitemap' => 'list',
 				'privacy-policy' => 'info',
 				'sample-page' => 'users',
+				'site-policy' => 'question',
 			),
 		));
 

@@ -417,9 +417,10 @@ class _widget_profile extends _widget_base
 			'itemtype' => 'http://schema.org/Person',
 			'itemprop' => 'author editor creator copyrightHolder',
 		));
-			// echo nl2br($instance['message']);
+			// echo nl2br($message);
 			// echo __($instance['message']);
-			beans_output_e("_output[{$class}][{$function}]",$message);
+			// beans_output_e("_output[{$class}][{$function}]",wpautop($message));
+			beans_output_e("_output[{$class}][{$function}]",nl2br($message));
 		beans_close_markup_e("_paragraph[{$class}][{$function}]",__utility_get_option('tag_site-description'));
 
 	}// Method
