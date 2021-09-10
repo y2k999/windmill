@@ -48,9 +48,16 @@ It is recommended to configure the plugin in the "Uikit Version" section of the 
 /* 2. ALIGNMENTS
  * =============================================================
  */
-.alignleft{}
-.alignright{}
-.aligncenter{}
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+.aligncenter{
+	display: block;
+	margin: 0 auto;
+}
 
 
 /* 30 ACCESSIBILITY

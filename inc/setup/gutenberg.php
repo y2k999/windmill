@@ -217,11 +217,11 @@ class _setup_gutenberg
 				'tag' => 'add_action',
 				'hook' => 'enqueue_block_assets',
 			),
+/*
 			'wp_block_library' => array(
 				'tag' => 'add_action',
 				'hook' => 'wp_enqueue_scripts'
 			),
-/*
 			'add_editor_style' => array(
 				'tag' => 'add_action',
 				'hook' => 'after_setup_theme'

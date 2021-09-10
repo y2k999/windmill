@@ -335,8 +335,8 @@ class _widget_adsence extends _widget_base
 		 * 	https://www.getbeans.io/code-reference/functions/beans_apply_filters/
 		*/
 		return beans_apply_filters("_filter[{$class}][{$function}]",$this->set_parameter_callback(array(
-			'__the_render' => ['tag' => 'beans_add_filter','hook' => 'the_content','priority' => PRIORITY['mid-high']],
-			// '__the_render' => ['tag' => 'beans_add_filter','hook' => 'the_content'],
+			// '__the_render' => ['tag' => 'beans_add_filter','hook' => 'the_content','priority' => PRIORITY['mid-high']],
+			// // '__the_render' => ['tag' => 'beans_add_filter','hook' => 'the_content'],
 		)));
 
 	}// Method
