@@ -328,7 +328,7 @@ class _controller_widget
 		 * 	https://www.getbeans.io/code-reference/functions/beans_output_e/
 		 * 	https://www.getbeans.io/code-reference/functions/beans_close_markup_e/
 		*/
-		beans_open_markup_e("_tag[{$class}][beans_title]" . _beans_widget_subfilters(),__utility_get_option('tag_widget-title'),'class=widget-title');
+		beans_open_markup_e("_tag[{$class}][beans_title]" . _beans_widget_subfilters(),__utility_get_option('tag_widget-title'),array('class' => 'widget-title'));
 			beans_output_e("_output[{$class}][beans_title]",beans_get_widget('title'));
 		beans_close_markup_e("_tag[{$class}][beans_title]" . _beans_widget_subfilters(),__utility_get_option('tag_widget-title'));
 

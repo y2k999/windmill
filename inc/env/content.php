@@ -405,7 +405,7 @@ class _env_content
 				[Parent]/inc/utility/theme.php
 		*/
 		if(__utility_is_uikit()){
-			if(is_singular('post')){
+			if(is_singular()){
 				$classes[] = 'uk-article';
 			}
 		}

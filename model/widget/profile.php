@@ -176,6 +176,11 @@ class _widget_profile extends _widget_base
 				'type' => 'text',
 				'default' => get_the_author_meta('display_name',$this->user_id),
 			),
+			'role' => array(
+				'label' => esc_html__('Author Role','windmill'),
+				'type' => 'text',
+				'default' => esc_html('Senior Consultant'),
+			),
 			'message' => array(
 				'label' => esc_html__('Author Profile','windmill'),
 				'type' => 'textarea',
@@ -267,7 +272,7 @@ class _widget_profile extends _widget_base
 						beans_open_markup_e("_column[{$class}]",'div',array('class' => 'uk-width-auto'));
 							$this->the_name($param['name']);
 							beans_open_markup_e("_paragraph[{$class}]",__utility_get_option('tag_site-description'),array('class' => 'uk-text-meta uk-padding-remove-top'));
-								echo esc_html('Lead Designer');
+								echo $param['role'];
 							beans_close_markup_e("_paragraph[{$class}]",__utility_get_option('tag_site-description'));
 						beans_close_markup_e("_column[{$class}]",'div');
 
