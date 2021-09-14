@@ -254,9 +254,6 @@ class _setup_admin
 				https://developer.wordpress.org/reference/functions/wp_enqueue_media/
 			@return (void)
 		*/
-		// Check if wp_enqueue_media() is already done in Beans Extension plugin.
-		if(!__utility_is_active_plugin('beans_extension/beans_extension.php')){return;}
-
 		if(function_exists('wp_enqueue_media')){
 			wp_enqueue_media();
 		}
