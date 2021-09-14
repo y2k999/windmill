@@ -1,6 +1,6 @@
 <?php
 /**
- * Child class that extends _widget_base (parrent class).
+ * Child class that extends WP_Widget (parrent class).
  * @link https://codex.wordpress.org/Widgets_API
  * @package Windmill
  * @license GPL3.0+
@@ -11,10 +11,6 @@
  * Inspired by Core class used to implement WP_Widget.
  * @link https://codex.wordpress.org/Widgets_API
  * @see WP_Widget
- * 
- * Inspired by Magazine Plus WordPress theme.
- * @link https://wenthemes.com/item/wordpress-themes/magazine-plus/
- * @see WEN Themes
  * 
  * Inspired by Eggnews WordPress theme.
  * @link https://themeegg.com/themes/eggnews/
@@ -60,7 +56,7 @@ if(!defined('WPINC')){die;}
 ______________________________
 */
 if(!class_exists('_widget_adsence')) :
-class _widget_adsence extends _widget_base
+class _widget_adsence extends WP_Widget
 {
 /**
  * [TOC]
@@ -90,17 +86,22 @@ class _widget_adsence extends _widget_base
 			Registerd adsence codes.
 		@var(array) $hook
 			Collection of hooks that is being registered (that is, actions or filters).
+		@var (array) $field
 	*/
 	private static $_class = '';
 	private static $_index = '';
+	private static $_param = array();
 	private $args = array();
 	private $code = array();
 	private $hook = array();
+	private $field = array();
 
 	/**
 	 * Traits.
 	*/
 	use _trait_hook;
+	use _trait_theme;
+	use _trait_widget;
 
 
 	/* Constructor
@@ -120,22 +121,23 @@ class _widget_adsence extends _widget_base
 		// Init properties.
 		self::$_class = __utility_get_class(get_class($this));
 		self::$_index = __utility_get_index(self::$_class);
+
 		$this->args = $this->set_args();
 		$this->code = $this->set_code();
+		$this->field = $this->set_field(self::$_param);
 
 		$widget_options = array(
 			'classname' => 'widget' . self::$_class,
-			'description' => '[Windmill]' . ' ' . ucfirst(self::$_index),
+			'description' => '[Windmill] ' . ucfirst(self::$_index),
 			'customize_selective_refresh' => TRUE,
 		);
 
 		parent::__construct(
 			self::$_index,
-			ucfirst(self::$_index),
+			'[Windmill] ' . ucfirst(self::$_index),
 			$widget_options,
-			array(),
-			$this->set_field()
 		);
+		$this->alt_option_name = 'widget' . self::$_class;
 
 		// Register hooks.
 		$this->hook = $this->set_hook();
@@ -285,11 +287,13 @@ class _widget_adsence extends _widget_base
 		*/
 		return beans_apply_filters("_filter[{$class}][{$function}]",array(
 			'title' => array(
+				'needle' => 'title',
 				'label' => esc_html__('Title','windmill'),
 				'type' => 'text',
 				'default' => esc_html__('Sponsored Link','windmill'),
 			),
 			'width' => array(
+				'needle' => 'width',
 				'label' => esc_html__('Width','windmill'),
 				'type' => 'select',
 				'option' => array(
@@ -303,6 +307,7 @@ class _widget_adsence extends _widget_base
 				'default' => 4,
 			),
 			'code' => array(
+				'needle' => 'code',
 				'label' => esc_html__('Code','windmill'),
 				'type' => 'textarea',
 				'default' => '',
@@ -366,13 +371,10 @@ class _widget_adsence extends _widget_base
 		*/
 		$class = self::$_class;
 
-		/**
-		 * @since 1.0.1
-		 * 	Get the widget parameters via parent class (_widget_base) method.
-		 * @reference
-		 * 	[Parent]/model/widget/base.php
-		*/
-		$param = $this->get_param($instance);
+		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
+		self::$_param['title'] = apply_filters('widget_title',empty($instance['title']) ? $this->field['title']['default'] : $instance['title'],$instance,$this->id_base);
+		self::$_param['width'] = (!empty($instance['width'])) ? absint($instance['width']) : $this->field['width']['default'];
+		self::$_param['code'] = isset($instance['code']) ? $instance['code'] : $this->field['code']['default'];
 
 		/**
 		 * @since 1.0.1
@@ -380,7 +382,7 @@ class _widget_adsence extends _widget_base
 		*/
 		echo $args['before_widget'];
 
-		switch($param['width']){
+		switch(self::$_param['width']){
 			case 0 :
 				$wrap = 'amazon-728';
 				break;
@@ -418,13 +420,13 @@ class _widget_adsence extends _widget_base
 			 * @reference
 			 * 	This filter is documented in wp-includes/widgets/class-wp-widget-pages.php
 			*/
-			if(!empty($param['title'])){
+			if(!empty(self::$_param['title'])){
 				beans_open_markup_e("_tag[{$class}]",__utility_get_option('tag_site-description'));
-					beans_output_e("_output[{$class}][title]",$param['title']);
+					beans_output_e("_output[{$class}][title]",self::$_param['title']);
 				beans_close_markup_e("_tag[{$class}]",__utility_get_option('tag_site-description'));
 			}
-			if(!empty($param['code'])){
-				beans_output_e("_output[{$class}][code]",$param['code']);
+			if(!empty(self::$_param['code'])){
+				beans_output_e("_output[{$class}][code]",self::$_param['code']);
 			}
 
 		beans_close_markup_e("_wrap[{$class}]",'div');

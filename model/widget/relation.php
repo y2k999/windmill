@@ -1,6 +1,6 @@
 <?php
 /**
- * Child class that extends _widget_base (parrent class).
+ * Child class that extends WP_Widget (parrent class).
  * @link https://codex.wordpress.org/Widgets_API
  * @package Windmill
  * @license GPL3.0+
@@ -12,9 +12,9 @@
  * @link https://codex.wordpress.org/Widgets_API
  * @see WP_Widget
  * 
- * Inspired by Magazine Plus WordPress theme.
- * @link https://wenthemes.com/item/wordpress-themes/magazine-plus/
- * @see WEN Themes
+ * Inspired by Eggnews WordPress theme.
+ * @link https://themeegg.com/themes/eggnews/
+ * @see ThemeEgg
  * 
  * Inspired by Luxeritas WordPress theme.
  * @link https://thk.kanzae.net/wp/
@@ -60,7 +60,7 @@ if(!defined('WPINC')){die;}
 ______________________________
 */
 if(class_exists('_widget_relation') === FALSE) :
-class _widget_relation extends _widget_base
+class _widget_relation extends WP_Widget
 {
 /**
  * [TOC]
@@ -82,14 +82,18 @@ class _widget_relation extends _widget_base
 			Name/Identifier with prefix.
 		@var (string) $_index
 			Name/Identifier without prefix.
+		@var (array) $field
 	*/
 	private static $_class = '';
 	private static $_index = '';
+	private static $_param = array();
+	private $field = array();
 
 	/**
 	 * Traits.
 	*/
 	use _trait_theme;
+	use _trait_widget;
 
 
 	/* Constructor
@@ -103,26 +107,26 @@ class _widget_relation extends _widget_base
 			@return (void)
 			@reference
 				[Parent]/inc/utility/general.php
-				[Parent]/model/widget/base.php
 		*/
 
 		// Init properties.
 		self::$_class = __utility_get_class(get_class($this));
 		self::$_index = __utility_get_index(self::$_class);
 
+		$this->field = $this->set_field(self::$_param);
+
 		$widget_options = array(
 			'classname' => 'widget' . self::$_class,
-			'description' => '[Windmill]' . ' ' . ucfirst(self::$_index),
+			'description' => '[Windmill] ' . ucfirst(self::$_index),
 			'customize_selective_refresh' => TRUE,
 		);
 
 		parent::__construct(
 			self::$_index,
-			ucfirst(self::$_index),
+			'[Windmill] ' . ucfirst(self::$_index),
 			$widget_options,
-			array(),
-			$this->set_field()
 		);
+		$this->alt_option_name = 'widget' . self::$_class;
 
 	}// Method
 
@@ -137,7 +141,7 @@ class _widget_relation extends _widget_base
 				Helper function that holds widget fields.
 				Array is used in update and form functions.
 			@return (array)
-				_filter[_widget_relation][field]
+				_filter[_widget_recent][field]
 			@reference
 				[Parent]/inc/utility/general.php
 		*/
@@ -151,6 +155,7 @@ class _widget_relation extends _widget_base
 		*/
 		return beans_apply_filters("_filter[{$class}][{$function}]",array(
 			'title' => array(
+				'needle' => 'title',
 				'label' => esc_html__('Title','windmill'),
 				'type' => 'text',
 				'default' => esc_html('Related Posts'),
@@ -161,17 +166,20 @@ class _widget_relation extends _widget_base
 			 * 	https://codex.wordpress.org/Option_Reference
 			*/
 			'number' => array(
+				'needle' => 'number',
 				'label' => esc_html__('Number of Posts to Show','windmill'),
 				'type' => 'number',
 				'default' => get_option('posts_per_page'),
 			),
 			'format' => array(
+				'needle' => 'format',
 				'label' => esc_html__('Format','windmill'),
 				'type' => 'select',
 				'option' => __utility_get_format(),
 				'default' => 'gallery',
 			),
 			'autoplay' => array(
+				'needle' => 'autoplay',
 				'label' => esc_html__('Autoplay','windmill'),
 				'type' => 'checkbox',
 				'default' => TRUE,
@@ -187,28 +195,54 @@ class _widget_relation extends _widget_base
 	public function widget($args,$instance)
 	{
 		/**
-			@access (public)
+			@since 2.8.0
 				The WordPress Query class.
 				https://developer.wordpress.org/reference/classes/wp_query/
 			@param (array) $args
-				Display arguments including 'before_title', 'after_title','before_widget', and 'after_widget'.
-			@param (object) $instance
-				The settings for the particular instance of the widget.
+				Display arguments including 'before_title', 'after_title', 'before_widget', and 'after_widget'.
+			@param (array) $instance
+				Settings for the current Recent Posts widget instance.
 			@return (void)
 			@reference
 				[Parent]/controller/widget.php
 				[Parent]/controller/fragment/widget.php
-				[Parent]/controller/structure/single.php
+				[Parent]/controller/structure/page.php
 				[Parent]/template/content/singular.php
-				[Parent]/template-part/content/content.php
+				[Parent]/template-part/content/content-page.php
 		*/
 		$class = self::$_class;
 
+		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
+		self::$_param['title'] = apply_filters('widget_title',empty($instance['title']) ? $this->field['title']['default'] : $instance['title'],$instance,$this->id_base);
+		self::$_param['number'] = (!empty($instance['number'])) ? absint($instance['number']) : $this->field['number']['default'];
+		self::$_param['format'] = isset($instance['format']) ? $instance['format'] : $this->field['format']['default'];
+		self::$_param['autoplay'] = isset($instance['autoplay']) ? $instance['autoplay'] : $this->field['autoplay']['default'];
+
+		// Get current post data.
+		$post = __utility_get_post_object();
+
 		/**
-		 * @reference
-		 * 	[Parent]/model/widget/base.php
+		 * @since 3.4.0
+		 * 	Filters the arguments for the Recent Posts widget.
+		 * 	https://developer.wordpress.org/reference/classes/wp_query/
+		 * @since 4.9.0
+		 * 	Added the `$instance` parameter.
+		 * @see WP_Query::get_posts()
+		 * @param (array) $args
+		 * 	An array of arguments used to retrieve the recent posts.
+		 * @param (array) $instance
+		 * 	Array of settings for the current widget.
 		*/
-		$param = $this->get_param($instance);
+		$r = new WP_Query(
+			beans_apply_filters("_filter[{$class}][query]",array(
+				'posts_per_page' => self::$_param['number'],
+				'post__in' => $this->get_terms_in($post),
+				'post_status' => 'publish',
+				'orderby' => 'post__in',
+				'ignore_sticky_posts' => TRUE,
+				'no_found_rows' => TRUE,
+			),$instance));
+
 
 		/**
 		 * @since 1.0.1
@@ -226,36 +260,9 @@ class _widget_relation extends _widget_base
 			 * @reference
 			 * 	This filter is documented in wp-includes/widgets/class-wp-widget-pages.php
 			*/
-			if(!empty($param['title'])){
-				self::__the_title($param['title'],'div');
+			if(!empty(self::$_param['title'])){
+				self::__the_title(self::$_param['title'],'div');
 			}
-
-			// Get current post data.
-			$post = __utility_get_post_object();
-
-			/**
-			 * @since 3.4.0
-			 * 	Filters the arguments for the Recent Posts widget.
-			 * 	https://developer.wordpress.org/reference/classes/wp_query/
-			 * @since 4.9.0
-			 * 	Added the `$instance` parameter.
-			 * @see WP_Query::get_posts()
-			 * @param (array) $args
-			 * 	An array of arguments used to retrieve the recent posts.
-			 * @param (array) $instance
-			 * 	Array of settings for the current widget.
-			*/
-			$r = new WP_Query(
-				beans_apply_filters("_filter[{$class}][query]",array(
-					'posts_per_page' => $param['number'],
-					// 'post__not_in' => array($post->ID),
-					'post__in' => $this->get_terms_in($post),
-					'post_status' => 'publish',
-					'orderby' => 'post__in',
-					'ignore_sticky_posts' => TRUE,
-					'no_found_rows' => TRUE,
-				),$instance)
-			);
 
 			/**
 			 * @reference (WP)
@@ -277,7 +284,7 @@ class _widget_relation extends _widget_base
 			 * 	[Parent]/controller/layout.php
 			 * 	[Parent]/inc/utility/theme.php
 			*/
-			if($param['autoplay']){
+			if(self::$_param['autoplay']){
 				beans_open_markup_e("_container[{$class}]",'div',array('class' => 'uk-position-relative uk-dark'));
 					beans_open_markup_e("_effect[{$class}]",'div',array('uk-slider' => 'autoplay: true autoplay-interval: 4500 pause-on-hover: true'));
 						beans_open_markup_e("_wrapper[{$class}]",'div',array(
@@ -297,7 +304,7 @@ class _widget_relation extends _widget_base
 			 * 	[Parent]/template-part/item/xxx.php
 			*/
 			while($r->have_posts()) :	$r->the_post();
-				get_template_part(SLUG['item'] . $param['format']);
+				get_template_part(SLUG['item'] . self::$_param['format']);
 			endwhile;
 
 			/**
@@ -309,11 +316,10 @@ class _widget_relation extends _widget_base
 			*/
 			wp_reset_postdata();
 
-			if($param['autoplay']){
+			if(self::$_param['autoplay']){
 					beans_close_markup_e("_wrapper[{$class}]",'div');
 					// Carousel Pagination
 					get_template_part(SLUG['nav'] . 'slider-default');
-					// get_template_part(SLUG['nav'] . 'slider-dotnav');
 					beans_close_markup_e("_effect[{$class}]",'div');
 				beans_close_markup_e("_container[{$class}]",'div');
 			}
@@ -414,10 +420,9 @@ class _widget_relation extends _widget_base
 
 	/**
 	 * [NOTE]
-	 * 	form() method and update() method are defined in the parent class.
+	 * 	form() method and update() method are defined in the trait file.
 	 * @reference
-	 * 	[Parent]/controller/widget.php
-	 * 	[Parent]/model/widget/base.php
+	 * 	[Parent]/inc/trait/widget.php
 	*/
 
 

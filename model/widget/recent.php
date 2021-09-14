@@ -1,6 +1,6 @@
 <?php
 /**
- * Child class that extends _widget_base (parrent class).
+ * Child class that extends WP_Widget (parrent class).
  * @link https://codex.wordpress.org/Widgets_API
  * @package Windmill
  * @license GPL3.0+
@@ -11,10 +11,6 @@
  * Inspired by Core class used to implement WP_Widget.
  * @link https://codex.wordpress.org/Widgets_API
  * @see WP_Widget
- * 
- * Inspired by Magazine Plus WordPress theme.
- * @link https://wenthemes.com/item/wordpress-themes/magazine-plus/
- * @see WEN Themes
  * 
  * Inspired by Eggnews WordPress theme.
  * @link https://themeegg.com/themes/eggnews/
@@ -59,8 +55,8 @@ if(!defined('WPINC')){die;}
 /* Exec
 ______________________________
 */
-if(!class_exists('_widget_recent')) :
-class _widget_recent extends _widget_base
+if(class_exists('_widget_recent') === FALSE) :
+class _widget_recent extends WP_Widget
 {
 /**
  * [TOC]
@@ -81,14 +77,18 @@ class _widget_recent extends _widget_base
 			Name/Identifier with prefix.
 		@var (string) $_index
 			Name/Identifier without prefix.
+		@var (array) $field
 	*/
 	private static $_class = '';
 	private static $_index = '';
+	private static $_param = array();
+	private $field = array();
 
 	/**
 	 * Traits.
 	*/
 	use _trait_theme;
+	use _trait_widget;
 
 
 	/* Constructor
@@ -102,26 +102,26 @@ class _widget_recent extends _widget_base
 			@return (void)
 			@reference
 				[Parent]/inc/utility/general.php
-				[Parent]/model/widget/base.php
 		*/
 
 		// Init properties.
 		self::$_class = __utility_get_class(get_class($this));
 		self::$_index = __utility_get_index(self::$_class);
 
+		$this->field = $this->set_field(self::$_param);
+
 		$widget_options = array(
 			'classname' => 'widget' . self::$_class,
-			'description' => '[Windmill]' . ' ' . ucfirst(self::$_index),
+			'description' => '[Windmill] ' . ucfirst(self::$_index),
 			'customize_selective_refresh' => TRUE,
 		);
 
 		parent::__construct(
 			self::$_index,
-			ucfirst(self::$_index),
+			'[Windmill] ' . ucfirst(self::$_index),
 			$widget_options,
-			array(),
-			$this->set_field()
 		);
+		$this->alt_option_name = 'widget' . self::$_class;
 
 	}// Method
 
@@ -150,6 +150,7 @@ class _widget_recent extends _widget_base
 		*/
 		return beans_apply_filters("_filter[{$class}][{$function}]",array(
 			'title' => array(
+				'needle' => 'title',
 				'label' => esc_html__('Title','windmill'),
 				'type' => 'text',
 				'default' => esc_html('Recent Posts'),
@@ -160,20 +161,17 @@ class _widget_recent extends _widget_base
 			 * 	https://codex.wordpress.org/Option_Reference
 			*/
 			'number' => array(
+				'needle' => 'number',
 				'label' => esc_html__('Number of Posts to Show','windmill'),
 				'type' => 'number',
 				'default' => get_option('posts_per_page'),
 			),
 			'format' => array(
+				'needle' => 'format',
 				'label' => esc_html__('Format','windmill'),
 				'type' => 'select',
 				'option' => __utility_get_format(),
 				'default' => 'card',
-			),
-			'autoplay' => array(
-				'label' => esc_html__('Autoplay','windmill'),
-				'type' => 'checkbox',
-				'default' => FALSE,
 			),
 		));
 
@@ -203,13 +201,30 @@ class _widget_recent extends _widget_base
 		*/
 		$class = self::$_class;
 
+		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
+		self::$_param['title'] = apply_filters('widget_title',empty($instance['title']) ? $this->field['title']['default'] : $instance['title'],$instance,$this->id_base);
+		self::$_param['number'] = (!empty($instance['number'])) ? absint($instance['number']) : $this->field['number']['default'];
+		self::$_param['format'] = isset($instance['format']) ? $instance['format'] : $this->field['format']['default'];
+
 		/**
-		 * @since 1.0.1
-		 * 	Get the widget parameters via parent class (_widget_base) method.
-		 * @reference
-		 * 	[Parent]/model/widget/base.php
+		 * @since 3.4.0
+		 * 	Filters the arguments for the Recent Posts widget.
+		 * 	https://developer.wordpress.org/reference/classes/wp_query/
+		 * @since 4.9.0
+		 * 	Added the `$instance` parameter.
+		 * @see WP_Query::get_posts()
+		 * @param (array) $args
+		 * 	An array of arguments used to retrieve the recent posts.
+		 * @param (array) $instance
+		 * 	Array of settings for the current widget.
 		*/
-		$param = $this->get_param($instance);
+		$r = new WP_Query(
+			beans_apply_filters("_filter[{$class}][query]",array(
+				'posts_per_page' => self::$_param['number'],
+				'post_status' => 'publish',
+				'ignore_sticky_posts' => TRUE,
+			),$instance));
+
 
 		/**
 		 * @since 1.0.1
@@ -219,7 +234,7 @@ class _widget_recent extends _widget_base
 		 * 	https://www.getbeans.io/code-reference/functions/beans_open_markup_e/
 		 * 	https://www.getbeans.io/code-reference/functions/beans_close_markup_e/
 		*/
-		beans_open_markup_e("_section[{$class}]",'div',array('class' => self::$_index));
+		beans_open_markup_e("_section[{$class}]",'section',__utility_get_column('widget',array('class' => self::$_index)));
 
 			/**
 			 * @since 1.0.1
@@ -227,30 +242,9 @@ class _widget_recent extends _widget_base
 			 * @reference
 			 * 	This filter is documented in wp-includes/widgets/class-wp-widget-pages.php
 			*/
-			if(!empty($param['title'])){
-				self::__the_title($param['title'],'div');
+			if(!empty(self::$_param['title'])){
+				self::__the_title(self::$_param['title'],'div');
 			}
-
-			/**
-			 * @since 3.4.0
-			 * 	Filters the arguments for the Recent Posts widget.
-			 * 	https://developer.wordpress.org/reference/classes/wp_query/
-			 * @since 4.9.0
-			 * 	Added the `$instance` parameter.
-			 * @see WP_Query::get_posts()
-			 * @param (array) $args
-			 * 	An array of arguments used to retrieve the recent posts.
-			 * @param (array) $instance
-			 * 	Array of settings for the current widget.
-			*/
-			$r = new WP_Query(
-				beans_apply_filters("_filter[{$class}][query]",array(
-					'posts_per_page' => $param['number'],
-					'post_status' => 'publish',
-					'ignore_sticky_posts' => TRUE,
-					'no_found_rows' => TRUE,
-				),$instance)
-			);
 
 			/**
 			 * @reference (WP)
@@ -264,70 +258,39 @@ class _widget_recent extends _widget_base
 			}
 
 			/**
-			 * @since 1.0.1
-			 * 	Widget content.
-			 * @reference (Uikit)
-			 * 	https://getuikit.com/docs/slider
-			 * @reference
-			 * 	[Parent]/controller/layout.php
-			 * 	[Parent]/inc/utility/theme.php
+				@description
+					Widget content.
 			*/
-			if($param['autoplay']){
-				beans_open_markup_e("_container[{$class}]",'div',array('class' => 'uk-position-relative uk-dark'));
-					beans_open_markup_e("_effect[{$class}]",'div',array('uk-slider' => 'autoplay: true autoplay-interval: 4500 pause-on-hover: true'));
-						beans_open_markup_e("_wrapper[{$class}]",'div',array('class' => 'uk-slider-items'));
-			}
-			else{
-				beans_open_markup_e("_wrapper[{$class}]",'div',__utility_get_grid('half',array('class' => 'uk-padding-small')));
-			}
+			beans_open_markup_e("_container[{$class}]",'div',__utility_get_grid('general','half',array('class' => 'uk-padding-small')));
 
 			/**
-			 * @reference (WP)
-			 * 	Iterate the post index in the loop.
-			 * 	https://developer.wordpress.org/reference/functions/the_post/
-			 * @reference
-			 * 	[Parent]/inc/setup/constant.php
-			 * 	[Parent]/template-part/item/xxx.php
+				@description
+					Start the loop.
 			*/
-			while($r->have_posts()) :	$r->the_post();
-				get_template_part(SLUG['item'] . $param['format']);
-			endwhile;
-
-			/**
-			 * @since 1.0.1
-			 * 	Only reset the query if a filter is set.
-			 * @reference (WP)
-			 * 	After looping through a separate query, this function restores the $post global to the current post in the main query.
-			 * 	https://developer.wordpress.org/reference/functions/wp_reset_postdata/
-			*/
-			wp_reset_postdata();
-
-			if($param['autoplay']){
-					beans_close_markup_e("_wrapper[{$class}]",'div');
-					// Carousel Pagination
-					get_template_part(SLUG['nav'] . 'nav-slider');
-					beans_close_markup_e("_effect[{$class}]",'div');
-				beans_close_markup_e("_container[{$class}]",'div');
+			while($r->have_posts()){
+				$r->the_post();
+				get_template_part(SLUG['item'] . self::$_param['format'],NULL,array('needle' => self::$_index));
 			}
-			else{
-				beans_close_markup_e("_wrapper[{$class}]",'div');
-			}
+
+			// Only reset the query if a filter is set.
+			wp_reset_query();
+
+			beans_close_markup_e("_wrapper[{$class}]",'div');
 
 		/**
-		 * @since 1.0.1
-		 * 	echo $args['after_widget'];
+			@description
+				echo $args['after_widget'];
 		*/
-		beans_close_markup_e("_section[{$class}]",'div');
+		beans_close_markup_e("_section[{$class}]",'section');
 
 	}// Method
 
 
 	/**
 	 * [NOTE]
-	 * 	form() method and update() method are defined in the parent class.
+	 * 	form() method and update() method are defined in the trait file.
 	 * @reference
-	 * 	[Parent]/controller/widget.php
-	 * 	[Parent]/model/widget/base.php
+	 * 	[Parent]/inc/trait/widget.php
 	*/
 
 

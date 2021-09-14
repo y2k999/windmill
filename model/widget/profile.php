@@ -1,6 +1,6 @@
 <?php
 /**
- * Child class that extends _widget_base (parrent class).
+ * Child class that extends WP_Widget (parrent class).
  * @link https://codex.wordpress.org/Widgets_API
  * @package Windmill
  * @license GPL3.0+
@@ -11,10 +11,6 @@
  * Inspired by Core class used to implement WP_Widget.
  * @link https://codex.wordpress.org/Widgets_API
  * @see WP_Widget
- * 
- * Inspired by Magazine Plus WordPress theme.
- * @link https://wenthemes.com/item/wordpress-themes/magazine-plus/
- * @see WEN Themes
  * 
  * Inspired by Eggnews WordPress theme.
  * @link https://themeegg.com/themes/eggnews/
@@ -64,7 +60,7 @@ if(!defined('WPINC')){die;}
 ______________________________
 */
 if(class_exists('_widget_profile') === FALSE) :
-class _widget_profile extends _widget_base
+class _widget_profile extends WP_Widget
 {
 /**
  * [TOC]
@@ -72,7 +68,6 @@ class _widget_profile extends _widget_base
  * 	set_user_id()
  * 	set_field()
  * 	widget()
- * 		get_param()
  * 		the_image()
  * 		the_name()
  * 		the_message()
@@ -90,15 +85,19 @@ class _widget_profile extends _widget_base
 			Name/Identifier without prefix.
 		@var (int) $user_id
 			Author/user id of the post.
+		@var (array) $field
 	*/
 	private static $_class = '';
 	private static $_index = '';
+	private static $_param = array();
 	private $user_id = 1;
+	private $field = array();
 
 	/**
 	 * Traits.
 	*/
 	use _trait_theme;
+	use _trait_widget;
 
 
 	/* Constructor
@@ -112,7 +111,6 @@ class _widget_profile extends _widget_base
 			@return (void)
 			@reference
 				[Parent]/inc/utility/general.php
-				[Parent]/model/widget/base.php
 		*/
 
 		// Init properties.
@@ -120,20 +118,20 @@ class _widget_profile extends _widget_base
 		self::$_index = __utility_get_index(self::$_class);
 
 		$this->user_id = __utility_get_user_id();
+		$this->field = $this->set_field(self::$_param);
 
 		$widget_options = array(
 			'classname' => 'widget' . self::$_class,
-			'description' => '[Windmill]' . ' ' . ucfirst(self::$_index),
+			'description' => '[Windmill] ' . ucfirst(self::$_index),
 			'customize_selective_refresh' => TRUE,
 		);
 
 		parent::__construct(
 			self::$_index,
-			ucfirst(self::$_index),
+			'[Windmill] ' . ucfirst(self::$_index),
 			$widget_options,
-			array(),
-			$this->set_field()
 		);
+		$this->alt_option_name = 'widget' . self::$_class;
 
 	}// Method
 
@@ -148,7 +146,7 @@ class _widget_profile extends _widget_base
 				Helper function that holds widget fields.
 				Array is used in update and form functions.
 			@return (array)
-				_filter[_widget_profile][field]
+				_filter[_widget_recent][field]
 			@reference
 				[Parent]/inc/utility/general.php
 		*/
@@ -162,6 +160,7 @@ class _widget_profile extends _widget_base
 		*/
 		return beans_apply_filters("_filter[{$class}][{$function}]",array(
 			'title' => array(
+				'needle' => 'title',
 				'label' => esc_html__('Title','windmill'),
 				'type' => 'text',
 				'default' => esc_html__('Author Profile','windmill'),
@@ -172,16 +171,19 @@ class _widget_profile extends _widget_base
 			 * 	https://developer.wordpress.org/reference/functions/get_the_author_meta/
 			*/
 			'name' => array(
+				'needle' => 'name',
 				'label' => esc_html__('Author Name','windmill'),
 				'type' => 'text',
 				'default' => get_the_author_meta('display_name',$this->user_id),
 			),
 			'role' => array(
+				'needle' => 'role',
 				'label' => esc_html__('Author Role','windmill'),
 				'type' => 'text',
 				'default' => esc_html('Senior Consultant'),
 			),
 			'message' => array(
+				'needle' => 'message',
 				'label' => esc_html__('Author Profile','windmill'),
 				'type' => 'textarea',
 				'default' => get_the_author_meta('description',$this->user_id),
@@ -192,6 +194,7 @@ class _widget_profile extends _widget_base
 			 * 	https://developer.wordpress.org/reference/functions/get_avatar/
 			*/
 			'image' => array(
+				'needle' => 'image',
 				'label' => esc_html__('Author Avatar','windmill'),
 				'type' => 'image',
 				'default' => get_avatar(get_the_author_meta('ID',$this->user_id),96,'',NULL,array('class' => 'uk-border-circle')),
@@ -207,28 +210,30 @@ class _widget_profile extends _widget_base
 	public function widget($args,$instance)
 	{
 		/**
-			@access (public)
-				Echoes the widget content.
+			@since 2.8.0
+				The WordPress Query class.
+				https://developer.wordpress.org/reference/classes/wp_query/
 			@param (array) $args
-				Display arguments including 'before_title', 'after_title','before_widget', and 'after_widget'.
-			@param (object) $instance
-				The settings for the particular instance of the widget.
+				Display arguments including 'before_title', 'after_title', 'before_widget', and 'after_widget'.
+			@param (array) $instance
+				Settings for the current Recent Posts widget instance.
 			@return (void)
 			@reference
 				[Parent]/controller/widget.php
 				[Parent]/controller/fragment/widget.php
-				[Parent]/controller/structure/sidebar.php
-				[Parent]/template/sidebar/sidebar.php
+				[Parent]/controller/structure/page.php
+				[Parent]/template/content/singular.php
+				[Parent]/template-part/content/content-page.php
 		*/
 		$class = self::$_class;
 
-		/**
-		 * @since 1.0.1
-		 * 	Get the widget parameters via parent class (_widget_base) method.
-		 * @reference
-		 * 	[Parent]/model/widget/base.php
-		*/
-		$param = $this->get_param($instance);
+		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
+		self::$_param['title'] = apply_filters('widget_title',empty($instance['title']) ? $this->field['title']['default'] : $instance['title'],$instance,$this->id_base);
+		self::$_param['name'] = isset($instance['name']) ? $instance['name'] : $this->field['name']['default'];
+		self::$_param['role'] = isset($instance['role']) ? $instance['role'] : $this->field['role']['default'];
+		self::$_param['message'] = isset($instance['message']) ? $instance['message'] : $this->field['message']['default'];
+		self::$_param['image'] = isset($instance['image']) ? $instance['image'] : $this->field['image']['default'];
+
 
 		/**
 		 * @since 1.0.1
@@ -246,15 +251,15 @@ class _widget_profile extends _widget_base
 			 * @reference
 			 * 	This filter is documented in wp-includes/widgets/class-wp-widget-pages.php
 			*/
-			if(!empty($param['title'])){
-				self::__the_title($param['title']);
+			if(!empty(self::$_param['title'])){
+				self::__the_title(self::$_param['title'],'div');
 			}
 
 			/**
-				@since 1.0.1
-					widget content.
-				@reference (Uikit)
-					https://getuikit.com/docs/card
+			 * @since 1.0.1
+			 * 	Widget content.
+			 * @reference (Uikit)
+			 * 	https://getuikit.com/docs/card
 			*/
 			beans_open_markup_e("_wrapper[{$class}]",'div',array('class' => 'uk-card'));
 
@@ -265,14 +270,14 @@ class _widget_profile extends _widget_base
 					));
 						// Avatar
 						beans_open_markup_e("_column[{$class}]",'div',array('class' => 'uk-width-auto'));
-							$this->the_image($param['image']);
+							$this->the_image(self::$_param['image']);
 						beans_close_markup_e("_column[{$class}]",'div');
 
 						// Name
 						beans_open_markup_e("_column[{$class}]",'div',array('class' => 'uk-width-auto'));
-							$this->the_name($param['name']);
+							$this->the_name(self::$_param['name']);
 							beans_open_markup_e("_paragraph[{$class}]",__utility_get_option('tag_site-description'),array('class' => 'uk-text-meta uk-padding-remove-top'));
-								echo $param['role'];
+								echo self::$_param['role'];
 							beans_close_markup_e("_paragraph[{$class}]",__utility_get_option('tag_site-description'));
 						beans_close_markup_e("_column[{$class}]",'div');
 
@@ -281,7 +286,7 @@ class _widget_profile extends _widget_base
 
 				// Description
 				beans_open_markup_e("_body[{$class}]",'div',array('class' => 'uk-card-body uk-padding-remove-top'));
-					$this->the_message($param['message']);
+					$this->the_message(self::$_param['message']);
 				beans_close_markup_e("_body[{$class}]",'div');
 
 				// SNS follow

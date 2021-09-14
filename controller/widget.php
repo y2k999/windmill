@@ -316,7 +316,8 @@ class _controller_widget
 		 * 	Retrieve data from the current widget in use.
 		 * 	https://www.getbeans.io/code-reference/functions/beans_get_widget/
 		*/
-		if(!beans_get_widget('title')){return;}
+		// if(!beans_get_widget('title')){return;}
+		if(!__utility_is_beans('widget')){return;}
 
 		$class = self::$_class;
 		$function = __utility_get_function(__FUNCTION__);

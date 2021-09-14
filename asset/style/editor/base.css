@@ -26,3 +26,16 @@ It is recommended to configure the plugin in the "Uikit Version" section of the 
 	line-height: 1.75;
 }
 
+.windmill-marker-red{
+	background: linear-gradient(transparent 80%, #ff1493 0%);
+}
+.windmill-marker-blue{
+	background: linear-gradient(transparent 80%, #59b1eb 0%);
+}
+.windmill-marker-yellow{
+	background: linear-gradient(transparent 80%, #ffff00 0%);
+}
+.windmill-marker-green{
+	background: linear-gradient(transparent 80%, #6cbe42 0%);
+}
+

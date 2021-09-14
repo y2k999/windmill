@@ -149,6 +149,7 @@ class _inline_base
 			'image',
 			'search',
 			'slider',
+			'marker',
 		));
 
 	}// Method
@@ -299,6 +300,12 @@ class _inline_base
 		// Add a single property.
 		$this->css->set_selector('li');
 		$this->css->add_property('line-height','2');
+
+		// Add a single property.
+		$this->css->set_selector('.widget li');
+		$this->css->add_properties(array(
+			'margin-bottom' => '1rem',
+		));
 
 	}// Method
 
@@ -583,6 +590,33 @@ class _inline_base
 		// Add a single property.
 		$this->css->set_selector('.uk-slidenav-large');
 		$this->css->add_property('color',$this->color['link']);
+
+	}// Method
+
+
+	/**
+		@access (private)
+			The inline css for the "Keiko-Pen".
+		@return (string)
+			_filter[_inline_base][marker]
+	*/
+	private function get_marker()
+	{
+		// Add a single property.
+		$this->css->set_selector('.windmill-marker-red');
+		$this->css->add_property('background','linear-gradient(transparent 80%, ' . COLOR['soft-pink'] . ' 0%);');
+
+		// Add a single property.
+		$this->css->set_selector('.windmill-marker-blue');
+		$this->css->add_property('background','linear-gradient(transparent 80%, ' . COLOR['soft-blue'] . ' 0%);');
+
+		// Add a single property.
+		$this->css->set_selector('.windmill-marker-yellow');
+		$this->css->add_property('background','linear-gradient(transparent 80%, ' . COLOR['yellow'] . ' 0%);');
+
+		// Add a single property.
+		$this->css->set_selector('.windmill-marker-green');
+		$this->css->add_property('background','linear-gradient(transparent 80%, ' . COLOR['moderate-green'] . ' 0%);');
 
 	}// Method
 
