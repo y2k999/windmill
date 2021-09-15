@@ -202,19 +202,19 @@ class _fragment_meta
 			'single' => __utility_get_value('meta_post'),
 			'card' => array(
 				'updated',
-				'cat-links'
+				// 'cat-links'
 			),
 			'gallery' => array(
 				'updated',
-				'cat-links'
+				// 'cat-links'
 			),
 			'general' => array(
 				'updated',
-				'cat-links'
+				// 'cat-links'
 			),
 			'list' => array(
 				'updated',
-				'cat-links'
+				// 'cat-links'
 			),
 			'figcaption' => array(
 				'cat-links'

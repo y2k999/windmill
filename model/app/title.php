@@ -378,11 +378,11 @@ class _app_title
 		 * 	https://www.getbeans.io/code-reference/functions/beans_open_markup/
 		 * 	https://www.getbeans.io/code-reference/functions/beans_close_markup/
 		*/
-		$before = beans_open_markup("_tag[{$class}][{$function}][{$needle}]",__utility_get_option('tag_item-title'),array(
+		$before = beans_open_markup("_tag[{$class}][{$function}][{$needle}]",'h5',array(
 			'class' => 'uk-heading-bullet',
 			'itemprop' => 'headline name',
 		));
-		$after = beans_close_markup("_tag[{$class}][{$function}][{$needle}]",__utility_get_option('tag_item-title'));
+		$after = beans_close_markup("_tag[{$class}][{$function}][{$needle}]",'h5');
 
 		/**
 		 * @reference (WP)

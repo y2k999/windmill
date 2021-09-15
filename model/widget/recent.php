@@ -63,7 +63,7 @@ class _widget_recent extends WP_Widget
  * 	__construct()
  * 	set_field()
  * 	widget()
- * 		get_param()
+ * 		__the_title()
  * 		__the_nopost()
  * 		get_template_part()
  * 	form()
@@ -261,22 +261,39 @@ class _widget_recent extends WP_Widget
 				@description
 					Widget content.
 			*/
-			beans_open_markup_e("_container[{$class}]",'div',__utility_get_grid('general','half',array('class' => 'uk-padding-small')));
-
-			/**
-				@description
-					Start the loop.
-			*/
-			while($r->have_posts()){
-				$r->the_post();
-				get_template_part(SLUG['item'] . self::$_param['format'],NULL,array('needle' => self::$_index));
+			$format = self::$_param['format'];
+			switch($format){
+				case 'card' :
+				case 'gallery' :
+					beans_open_markup_e("_wrapper[{$class}]",'div',__utility_get_grid('general','half',array('class' => 'uk-padding-small')));
+					break;
+				default :
+					beans_open_markup_e("_list[{$class}]",'ul');
+					beans_add_filter("_class[{$format}][item][unit]",'uk-flex');
+					beans_add_filter("_class[{$format}][item][image]",'uk-width-2-5');
+					beans_add_filter("_class[{$format}][item][header]",'uk-width-3-5');
+					break;
 			}
+				/**
+					@description
+						Start the loop.
+				*/
+				while($r->have_posts()){
+					$r->the_post();
+					get_template_part(SLUG['item'] . $format,NULL,array('needle' => self::$_index));
+				}
+				// Only reset the query if a filter is set.
+				wp_reset_query();
 
-			// Only reset the query if a filter is set.
-			wp_reset_query();
-
-			beans_close_markup_e("_wrapper[{$class}]",'div');
-
+			switch($format){
+				case 'card' :
+				case 'gallery' :
+					beans_close_markup_e("_wrapper[{$class}]",'div');
+					break;
+				default :
+					beans_close_markup_e("_list[{$class}]",'ul');
+					break;
+			}
 		/**
 			@description
 				echo $args['after_widget'];
