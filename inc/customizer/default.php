@@ -452,18 +452,6 @@ class _customizer_default
 			'breadcrumb' => 1,
 			'credit' => '',
 
-			/**
-			 * @since 1.0.1
-			 * 	Settings in SEO section.
-			 * @reference
-			 * 	[Parent]/inc/customizer/setting/seo/
-			*/
-			// google analytics
-			'ga_use' => 0,
-			'ga_tracking-id' => '',
-			'ga_tracking-type' => 'gtag',
-			'ga_exclude-login' => 1,
-
 			// tag
 			'tag_site-title' => 'h1',
 			'tag_site-description' => 'p',

@@ -50,10 +50,9 @@ ______________________________
 
 		// Priority of the section which informs load order of sections.
 		$priority = array(
-			'ga' => 10,
-			'meta' => 20,
-			'tag' => 30,
-			'toc' => 40,
+			'meta' => 10,
+			'tag' => 20,
+			'toc' => 30,
 		);
 
 		/**
@@ -62,13 +61,6 @@ ______________________________
 		 * 	https://developer.wordpress.org/reference/functions/apply_filters/
 		*/
 		return apply_filters("_filter[customizer][{$function}]",array(
-			array(
-				'name' => 'ga',
-				'title' => esc_html('Google Analytics'),
-				'type' => 'section',
-				'panel' => $panel,
-				'priority' => $priority['ga'],
-			),
 			array(
 				'name' => 'meta',
 				'title' => esc_html__('Post Meta','windmill'),
