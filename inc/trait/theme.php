@@ -255,15 +255,13 @@ trait _trait_theme
 	/* Method
 	_________________________
 	*/
-	public static function __the_title($text = '',$tag = '')
+	public static function __the_title($text = '')
 	{
 		/**
 			@access (public)
 				Echo the title.
 			@param (string) $text
 				Title text to render.
-			@param (string) $tag
-				HTML tag.
 			@return (void)
 			@reference
 				[Parent]/inc/customizer/option.php
@@ -280,7 +278,6 @@ trait _trait_theme
 		$class = self::$_class;
 		$function = __utility_get_function(__FUNCTION__);
 
-		$tag = !empty($tag) ? $tag : __utility_get_option('tag_widget-title');
 		/**
 		 * @reference (Beans)
 		 * 	HTML markup.
@@ -288,9 +285,9 @@ trait _trait_theme
 		 * 	https://www.getbeans.io/code-reference/functions/beans_output_e/
 		 * 	https://www.getbeans.io/code-reference/functions/beans_close_markup_e/
 		*/
-		beans_open_markup_e("_tag[{$class}][{$function}]",$tag,array('class' => 'uk-margin-medium-top uk-text-center widget-title'));
+		beans_open_markup_e("_tag[{$class}][{$function}]",__utility_get_option('tag_widget-title'),array('class' => 'uk-margin-medium-top uk-text-center widget-title'));
 			beans_output_e("_output[{$class}][{$function}]",$text);
-		beans_close_markup_e("_tag[{$class}][{$function}]",$tag);
+		beans_close_markup_e("_tag[{$class}][{$function}]",__utility_get_option('tag_widget-title'));
 
 	}// Method
 

@@ -134,7 +134,7 @@ class _app_branding
 			'__the_description' => array(
 				'beans_id' => $class . '__the_description',
 				'tag' => 'beans_add_action',
-				'hook' => HOOK_POINT['model'][$index]['append']
+				'hook' => HOOK_POINT['model'][$index]['main']
 			),
 		)));
 

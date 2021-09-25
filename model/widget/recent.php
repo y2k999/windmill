@@ -243,7 +243,7 @@ class _widget_recent extends WP_Widget
 			 * 	This filter is documented in wp-includes/widgets/class-wp-widget-pages.php
 			*/
 			if(!empty(self::$_param['title'])){
-				self::__the_title(self::$_param['title'],'div');
+				self::__the_title(self::$_param['title']);
 			}
 
 			/**

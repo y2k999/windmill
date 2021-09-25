@@ -17,6 +17,7 @@
  * @author Thierry Muller
 */
 
+
 /* Prepare
 ______________________________
 */
@@ -32,108 +33,107 @@ if(!defined('WPINC')){die;}
 ______________________________
 */
 ?>
-<!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<?php
+/**
+ * @reference (WP)
+ * 	Load header template.
+ * 	https://developer.wordpress.org/reference/functions/get_header/
+*/
+?>
+<?php get_header(); ?>
 
-<!-- ====================
-	<head>
- ==================== -->
-<head>
-	<meta charset="<?php bloginfo('charset'); ?>" />
-	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-	<link rel="profile" href="https://gmpg.org/xfn/11" />
-	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-	<?php do_action(HOOK_POINT['head']['before']); ?>
-	<?php wp_head(); ?>
-	<?php do_action(HOOK_POINT['head']['after']); ?>
-</head>
-
-<!-- ====================
-	<body>
- ==================== -->
-<body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
-
-<?php do_action(HOOK_POINT['site']['before']); ?>
-
-<div id="page" class="<?php echo apply_filters("_class[root][site]",esc_attr('hfeed site')); ?>">
-
-<?php if(apply_filters("_filter[root][skiplink]",TRUE)) : ?>
-	<a class="screen-reader-text skip-link" href="#content"><?php echo apply_filters("_output[root][skip-link]",esc_html__('Skip to Content.','windmill')); ?></a>
-<?php endif; ?>
-
-<!-- ====================
-	<masthead>
- ==================== -->
-<section<?php echo apply_filters("_property[section][masthead]",''); ?>>
-<header id="masthead" class="uk-container uk-container-expand uk-padding-remove-horizontal site-header" role="banner" itemscope="itemscope" itemtype="https://schema.org/WPHeader" itemprop="publisher" uk-sticky>
-	<nav class="uk-navbar-transparent" uk-navbar>
-		<div class="uk-navbar-left uk-padding-small">
-			<?php __utility_app_branding(); ?>
-		</div><!-- .navbar-left -->
-	
-		<div class="uk-navbar-right uk-visible@m">
-			<?php
-			/* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped -- Echoes HTML output. */
-			if(__utility_is_beans('widget')){
-				if(beans_has_widget_area('header_primary')){
-					echo beans_get_widget_area_output('header_primary');
-				}
-			}
-			else{
-				if(is_active_sidebar('header_primary')){
-					dynamic_sidebar('header_primary');
-				}
-			}
-			?>
-
-		</div><!-- .navbar-right -->
-	</nav>
-
-	<div class="uk-width-auto uk-padding-remove-horizontal uk-background-secondary">
-		<ul class="uk-subnav uk-padding-small uk-flex uk-flex-center">
-			<li class="uk-visible@s"><a href="#">Home</a></li>
-			<li class="uk-visible@s"><a href="#">About Us</a></li>
-			<li class="uk-visible@s"><a href="#">Contact</a></li>
-			<li class="uk-visible@s"><a href="#">Blog</a></li>
-			<li class="uk-visible@s"><a href="#">Privacy</a></li>
-		</ul>
-	</div>
-
-</header>
-</section>
-
+<?php do_action(HOOK_POINT['content']['before']); ?>
 
 <!-- ====================
 	<site-content>
 ==================== -->
-<div id="content" class="uk-container uk-container-expand site-content">
-	<div class="uk-grid-small" uk-grid>
+<section<?php echo apply_filters("_property[section][content]",''); ?>>
+<div id="content"<?php echo apply_filters("_property[container][content]",esc_attr('')); ?><?php echo apply_filters("_attribute[container][content]",''); ?>>
+	<?php
+	/**
+		@hooked
+			_fragment_title::__the_page()
+		@reference
+			[Parent]/controller/fragment/title.php
+	*/
+	?>
+	<?php do_action(HOOK_POINT['content']['prepend']); ?>
 
-		<div class="uk-width-1-2">
-			<?php do_action('windmill/template/toppage/one'); ?>
-		</div><!-- .uk-width -->
+	<div<?php echo apply_filters("_property[grid][default]",''); ?><?php echo apply_filters("_attribute[grid]",''); ?>>
 
-		<div class="uk-width-1-2">
-			<?php do_action('windmill/template/toppage/two'); ?>
-		</div><!-- .uk-width -->
-
-	</div><!-- .grid -->
-
-	<div class="uk-grid-small" uk-grid="uk-grid">
+		<?php do_action(HOOK_POINT['primary']['before']); ?>
 
 		<!-- ====================
 			<primary>
 		==================== -->
-		<main id="primary" class="uk-width-1-1@s uk-width-2-3@m site-main" role="main" itemscope="itemscope" itemtype="https://schema.org/Blog" itemprop="mainEntityOfPage" tabindex="-1">
+		<main id="primary"<?php echo apply_filters("_property[column][primary]",esc_attr('')); ?><?php echo apply_filters("_attribute[column][primary]",''); ?>>
 
-			<?php do_action('windmill/template/toppage/three'); ?>
+			<?php do_action(HOOK_POINT['primary']['prepend']); ?>
 
-			<?php do_action('windmill/template/toppage/four'); ?>
+			<?php 
+			/**
+			 * @reference (WP)
+			 * 	Determines whether current WordPress query has posts to loop over.
+			 * 	https://developer.wordpress.org/reference/functions/have_posts/
+			 * 	Iterate the post index in the loop.
+			 * 	https://developer.wordpress.org/reference/functions/the_post/
+			 * 	Loads a template part into a template.
+			 * 	https://developer.wordpress.org/reference/functions/get_template_part/
+			*/
+			if(!have_posts()) :
+				get_template_part(SLUG['content'] . 'content','none');
+			endif;
+			?>
+			<?php while(have_posts()) : the_post(); ?>
 
-			<?php do_action('windmill/template/toppage/five'); ?>
+				<!-- ====================
+					<article>
+				==================== -->
+				<?php
+				/**
+				 * @reference (WP)
+				 * 	Display the ID of the current item in the WordPress Loop.
+				 * 	https://developer.wordpress.org/reference/functions/the_id/
+				 * 	Displays the classes for the post container element.
+				 * 	https://developer.wordpress.org/reference/functions/post_class/
+				*/
+				?>
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
+					<!-- =============== 
+						<entry-header>
+					=============== -->
+					<?php __utility_app_share(); ?>
+
+					<header class="<?php echo apply_filters("_class[page][article][header]",esc_attr('entry-header')); ?>"<?php echo apply_filters("_attribute[page][article][header]",''); ?>>
+						<?php
+						/**
+							@hooked
+								_fragment_title::__the_archive()
+							@reference
+								[Parent]/controller/fragment/title.php
+						*/
+						?>
+						<?php do_action(HOOK_POINT['page']['header']['main']); ?>
+					</header>
+
+					<!-- =============== 
+						<entry-content>
+					=============== -->
+					<div class="<?php echo apply_filters("_class[page][article][content]",esc_attr('entry-content')); ?>"<?php echo apply_filters("_attribute[page][article][content]",''); ?>>
+						<?php the_content(); ?>
+
+						<?php the_widget('_widget_recent'); ?>
+					</div><!-- .entry-content -->
+
+				</article>
+
+			<?php endwhile; ?>
+
+			<?php do_action(HOOK_POINT['primary']['append']); ?>
 		</main>
+
+		<?php do_action(HOOK_POINT['primary']['after']); ?>
 
 		<!-- ====================
 			<secondary>
@@ -149,6 +149,18 @@ ______________________________
 
 	</div><!-- .grid -->
 
-</div><!-- #content -->
+	<?php do_action(HOOK_POINT['content']['append']); ?>
 
+</div><!-- #content -->
+</section>
+
+<?php do_action(HOOK_POINT['content']['after']); ?>
+
+<?php
+/**
+ * @reference (WP)
+ * 	Load footer template.
+ * 	https://developer.wordpress.org/reference/functions/get_footer/
+*/
+?>
 <?php get_footer(); ?>

@@ -38,6 +38,7 @@ class _app_comments
  * 	set_hook()
  * 	invoke_hook()
  * 	__the_template()
+ * 		__the_title()
  * 	__the_status()
  * 	__the_number()
  * 	__the_navigation()
@@ -188,7 +189,7 @@ class _app_comments
 			 * 	[Parent]/inc/trait/theme.php
 			*/
 			if(isset(self::$_param['title'])){
-				self::__the_title(self::$_param['title'],'div');
+				self::__the_title(self::$_param['title']);
 			}
 
 			/**

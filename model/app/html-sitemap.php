@@ -41,6 +41,7 @@ class _app_html_sitemap
  * 	__the_template()
  * 	__the_icon()
  * 	__the_render()
+ * 		__the_title()
 */
 
 	/**

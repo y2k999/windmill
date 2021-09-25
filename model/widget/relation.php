@@ -67,7 +67,7 @@ class _widget_relation extends WP_Widget
  * 	__construct()
  * 	set_field()
  * 	widget()
- * 		get_param()
+ * 		__the_title()
  * 		__the_nopost()
  * 		get_template_part()
  * 	get_terms_in()
@@ -261,7 +261,7 @@ class _widget_relation extends WP_Widget
 			 * 	This filter is documented in wp-includes/widgets/class-wp-widget-pages.php
 			*/
 			if(!empty(self::$_param['title'])){
-				self::__the_title(self::$_param['title'],'div');
+				self::__the_title(self::$_param['title']);
 			}
 
 			/**

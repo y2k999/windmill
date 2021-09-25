@@ -40,6 +40,7 @@ class _app_share
  * 	set_hook()
  * 	invoke_hook()
  * 	__the_template()
+ * 		__the_title()
 */
 
 	/**
@@ -258,7 +259,7 @@ class _app_share
 			 * 	[Parent]/inc/trait/theme.php
 			*/
 			if(isset(self::$_param['title'])){
-				self::__the_title(self::$_param['title'],'div');
+				self::__the_title(self::$_param['title']);
 			}
 
 			/**

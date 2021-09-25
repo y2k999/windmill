@@ -469,8 +469,8 @@ class _customizer_default
 			'tag_site-description' => 'p',
 			'tag_page-title' => 'h2',
 			'tag_post-title' => 'h2',
-			'tag_item-title' => 'h4',
 			'tag_widget-title' => 'h4',
+			'tag_item-title' => 'h5',
 
 			// meta
 			'meta_post' => $this->meta_single,

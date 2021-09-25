@@ -68,6 +68,7 @@ class _widget_profile extends WP_Widget
  * 	set_user_id()
  * 	set_field()
  * 	widget()
+ * 		__the_title()
  * 		the_image()
  * 		the_name()
  * 		the_message()
@@ -252,7 +253,7 @@ class _widget_profile extends WP_Widget
 			 * 	This filter is documented in wp-includes/widgets/class-wp-widget-pages.php
 			*/
 			if(!empty(self::$_param['title'])){
-				self::__the_title(self::$_param['title'],'div');
+				self::__the_title(self::$_param['title']);
 			}
 
 			/**
