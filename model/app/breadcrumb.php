@@ -269,10 +269,7 @@ class _app_breadcrumb
 		 * 	https://www.getbeans.io/code-reference/functions/beans_output_e/
 		 * 	https://www.getbeans.io/code-reference/functions/beans_close_markup_e/
 		*/
-		beans_open_markup_e("_item[{$class}][root][{$function}]",'li',array(
-			'itemscope' => 'itemscope',
-			'itemtype' => 'http://data-vocabulary.org/Breadcrumb',
-		));
+		beans_open_markup_e("_item[{$class}][root][{$function}]",'li');
 			beans_open_markup_e("_link[{$class}][root][{$function}]",'a',array(
 				'href' => home_url(),
 			));
@@ -827,19 +824,14 @@ class _app_breadcrumb
 		 * 	https://www.getbeans.io/code-reference/functions/beans_output_e/
 		 * 	https://www.getbeans.io/code-reference/functions/beans_close_markup_e/
 		*/
-		beans_open_markup_e("_item[{$class}][{$function}][{$handle}]",'li',array(
-			'itemscope' => 'itemscope',
-			'itemtype' => 'http://data-vocabulary.org/Breadcrumb',
-		));
+		beans_open_markup_e("_item[{$class}][{$function}][{$handle}]",'li');
 			if(!empty($url)){
 				beans_open_markup_e("_link[{$class}][{$function}][{$handle}]",'a',array(
 					'href' => $url,
 				));
 			}
 				if($label){
-					beans_open_markup_e("_label[{$class}][{$function}][{$handle}]",'span',array(
-						'itemprop' => 'title'
-					));
+					beans_open_markup_e("_label[{$class}][{$function}][{$handle}]",'span');
 				}
 				beans_output_e("_output[{$class}][{$function}][{$handle}]",$output);
 
