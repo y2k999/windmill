@@ -51,6 +51,7 @@ class _customizer_callback
  * 		__get_length_title()
  * 		__get_length_excerpt()
  * 	__get_blogcard_type()
+ * 	__get_ga_tracking_type()
  * 	__get_meta()
  * 		__get_meta_archive()
  * 		__get_meta_post()
@@ -318,6 +319,36 @@ class _customizer_callback
 			'hatena' => esc_html('Hatena Service (iframe)'),
 			'ogp' => esc_html('Open Graph Library'),
 			'embed' => esc_html('oEmbed API'),
+		));
+
+	}// Method
+
+
+	/* Method
+	_________________________
+	*/
+	public static function __get_ga_tracking_type()
+	{
+		/**
+			@access (public)
+				Google analytics tracking type.
+			@return (array)
+				_filter[_customizer_callback][ga_tracking_type]
+			@reference
+				[Parent]/inc/plugin/google/analytics.php
+				[Parent]/inc/utility/general.php
+		*/
+		$class = self::$_class;
+		$function = __utility_get_function(__FUNCTION__);
+
+		/**
+		 * @reference (WP)
+		 * 	Calls the callback functions that have been added to a filter hook.
+		 * 	https://developer.wordpress.org/reference/functions/apply_filters/
+		*/
+		return apply_filters("_filter[{$class}][{$function}]",array(
+			'gtag' => esc_html('Global Site Tag (gtag.js)'),
+			'analytics' => esc_html('Universal Analytics (analytics.js)'),
 		));
 
 	}// Method

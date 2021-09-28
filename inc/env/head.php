@@ -46,6 +46,7 @@ class _env_head
  * 	meta_format_detection()
  * 	meta_keywords()
  * 	meta_description()
+ * 	__get_description()
  * 	canonical()
  * 	noindex()
 */
@@ -64,7 +65,7 @@ class _env_head
 	*/
 	private static $_class = '';
 	private static $_index = '';
-	private $field = array();
+	private static $_field = array();
 	private $hook = array();
 
 	/**
@@ -93,7 +94,7 @@ class _env_head
 		self::$_class = __utility_get_class(get_class($this));
 		self::$_index = __utility_get_index(self::$_class);
 
-		$this->field = $this->set_field();
+		self::$_field = $this->set_field();
 
 		$this->cleanup();
 		$this->staticize();
@@ -356,8 +357,8 @@ class _env_head
 
 		$keywords = '';
 
-		if(isset($this->field['keywords'])){
-			$keywords = get_post_meta($post->ID,$this->field['keywords'],TRUE);
+		if(isset(self::$_field['keywords'])){
+			$keywords = get_post_meta($post->ID,self::$_field['keywords'],TRUE);
 		}
 
 		/**
@@ -395,15 +396,44 @@ class _env_head
 		*/
 		if(is_admin()){return;}
 
+		$class = self::$_class;
+		$function = __utility_get_function(__FUNCTION__);
+
+		$description = self::__get_description();
+
+		/**
+		 * @reference (WP)
+		 * 	Calls the callback functions that have been added to a filter hook.
+		 * 	https://developer.wordpress.org/reference/functions/apply_filters/
+		*/
+		echo apply_filters("_filter[{$class}][{$function}]",sprintf('<meta name="description" content="%s" />',$description));
+
+	}// Method
+
+
+	/* Method
+	_________________________
+	*/
+	public static function __get_description()
+	{
+		/**
+			@access (public)
+				Generate the meta description for the current post.
+				https://on-ze.com/archives/817
+				https://service.plan-b.co.jp/blog/seo/8254/
+			@global (WP_Post) $post
+				https://developer.wordpress.org/reference/classes/wp_post/
+			@return (string)
+				_filter[_env_head][meta_description]
+			@reference
+				[Parent]/inc/utility/general.php
+		*/
 		// Get current post data.
 		global $post;
 		if(empty($post)){
 			$post = __utility_get_post_object();
 		}
 		if(empty($post)){return;}
-
-		$class = self::$_class;
-		$function = __utility_get_function(__FUNCTION__);
 
 		// Get current post data.
 		$post_content = get_the_content();
@@ -414,8 +444,6 @@ class _env_head
 		if(!$post_id){
 			$post_id = $post->ID;
 		}
-
-		$description = '';
 
 		if(is_front_page() || is_home()){
 			/**
@@ -436,7 +464,7 @@ class _env_head
 		}
 		elseif(is_singular()){
 			// Check the custom field.
-			$description = get_post_meta($post_id,$this->field['description'],TRUE);
+			$description = get_post_meta($post_id,self::$_field['description'],TRUE);
 			if(empty($description)){
 				$description = str_replace(array("\r","\n","\t"),'',$post_content);
 
@@ -539,12 +567,7 @@ class _env_head
 			}
 		}
 
-		/**
-		 * @reference (WP)
-		 * 	Calls the callback functions that have been added to a filter hook.
-		 * 	https://developer.wordpress.org/reference/functions/apply_filters/
-		*/
-		echo apply_filters("_filter[{$class}][{$function}]",sprintf('<meta name="description" content="%s" />',$description));
+		return $description;
 
 	}// Method
 

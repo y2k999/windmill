@@ -173,7 +173,7 @@ class _env_title
 		 * 	https://developer.wordpress.org/reference/functions/wp_trim_words/
 		*/
 		// $title = mb_strimwidth($title,0,40,'Åc','UTF-8');
-		$title = wp_trim_words($title,36,'...');
+		$title = wp_trim_words($title,32,'...');
 
 		return $title;
 

@@ -156,17 +156,17 @@ class _env_foot
 			'javascript_to_footer' => array(
 				'tag' => 'add_action',
 				'hook' => 'wp_enqueue_scripts',
-				'priority' => PRIORITY['mid-high']
+				'priority' => PRIORITY['high']
 			),
 			'dequeue_css_header' => array(
 				'tag' => 'add_action',
 				'hook' => 'wp_enqueue_scripts',
-				'priority' => PRIORITY['mid-high']
+				'priority' => PRIORITY['high']
 			),
 			'enqueue_css_footer' => array(
 				'tag' => 'add_action',
 				'hook' => 'wp_footer',
-				'priority' => PRIORITY['mid-high']
+				'priority' => PRIORITY['high']
 			),
 		)));
 

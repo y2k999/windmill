@@ -49,8 +49,12 @@ ______________________________
  * 	https://developer.wordpress.org/reference/functions/home_url/
 */
 ?>
-<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above. */ ?>
-<form role="search" <?php echo $aria_label; ?> method="get" class="<?php echo apply_filters("_class[{$index}][search][form]",esc_attr('uk-search uk-search-default uk-padding-small uk-width-1-1')); ?>" id="searchform" action="<?php echo esc_url(home_url('/')); ?>" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
-	<span class="<?php echo apply_filters("_class[{$index}][search][icon]",esc_attr('uk-padding-small')); ?>" uk-search-icon></span>
-	<input type="search" id="<?php echo esc_attr($unique_id); ?>" class="<?php echo apply_filters("_class[{$index}][search][input]",esc_attr('uk-search-input')); ?>" value="" placeholder="<?php echo esc_attr__('Search','windmill'); ?>" name="s" itemprop="query-input" />
-</form>
+<div id="search" itemscope itemtype="https://schema.org/WebSite">
+	<meta itemprop="url" content="<?php echo esc_url(home_url('/')); ?>" />
+	<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above. */ ?>
+	<form id="searchform" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction" method="get" class="<?php echo apply_filters("_class[{$index}][search][form]",esc_attr('uk-search uk-search-default uk-padding-small uk-width-1-1')); ?>" action="<?php echo esc_url(home_url('/')); ?>" <?php echo $aria_label; ?> role="search">
+		<meta itemprop="target" content="<?php echo esc_url(home_url('/')); ?>?s={s}" />
+		<span class="<?php echo apply_filters("_class[{$index}][search][icon]",esc_attr('uk-padding-small')); ?>" uk-search-icon></span>
+		<input type="search" id="<?php echo esc_attr($unique_id); ?>" itemprop="query-input" class="<?php echo apply_filters("_class[{$index}][search][input]",esc_attr('uk-search-input')); ?>" placeholder="<?php echo esc_attr__('Search','windmill'); ?>" value="<?php echo get_search_query(); ?>" name="s" title="<?php echo esc_attr__('Search','windmill'); ?>" />
+	</form>
+</div>
