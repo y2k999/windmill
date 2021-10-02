@@ -50,7 +50,7 @@ ______________________________
 
 		// Priority of the section which informs load order of sections.
 		$priority = array(
-			'ga' => 10,
+			'google' => 10,
 			'meta' => 20,
 			'tag' => 30,
 			'toc' => 40,
@@ -63,11 +63,11 @@ ______________________________
 		*/
 		return apply_filters("_filter[customizer][{$function}]",array(
 			array(
-				'name' => 'ga',
-				'title' => esc_html('Google Analytics'),
+				'name' => 'google',
+				'title' => esc_html('Google Site Kit'),
 				'type' => 'section',
 				'panel' => $panel,
-				'priority' => $priority['ga'],
+				'priority' => $priority['google'],
 			),
 			array(
 				'name' => 'meta',

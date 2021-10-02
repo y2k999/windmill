@@ -57,20 +57,9 @@ ______________________________
 */
 beans_open_markup_e("_wrap[{$index}]",'div',array(
 	'class' => 'uk-navbar-item uk-width-expand',
-	'itemscope' => 'itemscope',
-	'itemtype' => 'https://schema.org/WebSite',
-	'url' => esc_url(home_url('/')),
 ));
-/*
-	beans_output_e("_meta[{$index}][url]",sprintf(
-		'<meta itemprop="url" content="%1$s" />',
-		esc_url(home_url('/'))
-	));
-*/
+
 	beans_open_markup_e("_form[{$index}]",'form',array(
-		'itemprop' => 'potentialAction',
-		'itemscope' => 'itemscope',
-		'itemtype' => 'https://schema.org/SearchAction',
 		'method' => 'get',
 		'class' => 'uk-search uk-width-1-1',
 		/**
@@ -79,21 +68,16 @@ beans_open_markup_e("_wrap[{$index}]",'div',array(
 		 * 	https://developer.wordpress.org/reference/functions/home_url/
 		*/
 		'action' => esc_url(home_url('/')),
-		'target' => esc_url(home_url('/')) . '?s={s}',
 		'role' => 'search',
 	));
-/*
-		beans_output_e("_meta[{$index}][target]",sprintf(
-			'<meta itemprop="target" content="%1$s?s={s}" />',
-			esc_url(home_url('/'))
-		));
-*/
+
 		beans_selfclose_markup_e("_input[{$index}]",'input',array(
+			'type' => 'text',
 			'class' => 'uk-input uk-search-input',
 			'name' => 's',
-			'value' => get_search_query(),
+			'id' => 's',
 			'placeholder' => esc_attr('Search...'),
-			'itemprop' => 'query-input',
+			'value' => get_search_query(),
 		));
 
 	beans_close_markup_e("_form[{$index}]",'form');

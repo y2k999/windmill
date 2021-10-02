@@ -224,7 +224,7 @@ class _app_search
 		 * 	https://getuikit.com/docs/toggle
 		*/
 		beans_output_e("_output[{$class}][{$function}]",sprintf(
-			'<a href="%1$s" class="uk-navbar-toggle uk-visible@m" rel="search" itemprop="url" uk-toggle="target: .%2$s; animation: uk-animation-fade" uk-search-icon></a>',
+			'<a href="%1$s" class="uk-navbar-toggle uk-visible@m" rel="search" uk-toggle="target: .%2$s; animation: uk-animation-fade" uk-search-icon></a>',
 			$href = '#',
 			$this->toggle_target
 		));

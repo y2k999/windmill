@@ -319,7 +319,7 @@ class _setup_gutenberg
 
 		if(!empty($this->style_both)){
 			foreach($this->style_both as $key => $value){
-				wp_enqueue_style(self::__make_handle($key),$value,__utility_get_theme_version(),'all');
+				wp_enqueue_style(__utility_make_handle($key),$value,__utility_get_theme_version(),'all');
 			}
 		}
 

@@ -39,8 +39,8 @@ ______________________________
 	 * 	[Parent]/inc/setup/constant.php
 	 * 	[Parent]/inc/customizer/default.php
 	*/
-	// if(function_exists('__get_customizer_seo_ga') === FALSE) :
-	function __get_customizer_seo_ga()
+	// if(function_exists('__get_customizer_seo_google') === FALSE) :
+	function __get_customizer_seo_google()
 	{
 		$function = __utility_get_function(__FUNCTION__);
 		$exploded = explode('_',$function);
@@ -54,6 +54,8 @@ ______________________________
 			'ga_tracking-id' => 20,
 			'ga_tracking-type' => 30,
 			'ga_exclude-login' => 40,
+			'gsc_use' => 50,
+			'gsc_meta-tag' => 60,
 		);
 
 		/**
@@ -73,7 +75,7 @@ ______________________________
 			),
 			array(
 				'name' => 'ga_tracking-id',
-				'label' => esc_html('Tracking ID'),
+				'label' => esc_html('GA Tracking ID'),
 				'description' => 'G-ID or UA-ID',
 				'control' => 'text',
 				'type' => 'control',
@@ -86,7 +88,7 @@ ______________________________
 			),
 			array(
 				'name' => 'ga_tracking-type',
-				'label' => esc_html('Tracking Code Type'),
+				'label' => esc_html('GA Tracking Code Type'),
 				'description' => 'If you use GA4, select gtag.js.',
 				'control' => 'select',
 				'type' => 'control',
@@ -102,6 +104,24 @@ ______________________________
 				'section' => $section,
 				'default' => $class::__get_setting('ga_exclude-login'),
 				'priority' => $priority['ga_exclude-login'],
+			),
+			array(
+				'name' => 'gsc_use',
+				'label' => esc_html__('Use Google Search Console','windmill'),
+				'control' => 'checkbox',
+				'type' => 'control',
+				'section' => $section,
+				'default' => $class::__get_setting('gsc_use'),
+				'priority' => $priority['gsc_use'],
+			),
+			array(
+				'name' => 'gsc_meta-tag',
+				'label' => esc_html('Google Search Console meta tag'),
+				'control' => 'text',
+				'type' => 'control',
+				'section' => $section,
+				'default' => $class::__get_setting('gsc_meta-tag'),
+				'priority' => $priority['gsc_meta-tag'],
 			),
 		));
 

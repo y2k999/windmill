@@ -209,6 +209,8 @@ class _theme_loadup
 			require_once (trailingslashit(get_template_directory()) . 'inc/plugin/jetpack/jetpack.php');
 		}
 
+		require_once (trailingslashit(get_template_directory()) . 'inc/plugin/google/google.php');
+
 	}// Method
 
 

@@ -27,8 +27,8 @@ if(!defined('WPINC')){die;}
 /* Exec
 ______________________________
 */
-if(class_exists('_windmill_google_analytics') === FALSE) :
-class _windmill_google_analytics
+if(class_exists('_windmill_google') === FALSE) :
+class _windmill_google
 {
 /**
  * [TOC]
@@ -36,8 +36,10 @@ class _windmill_google_analytics
  * 	__construct()
  * 	set_hook()
  * 	invoke_hook()
- * 	register()
- * 	is_enable()
+ * 	search_console()
+ * 	analytics()
+ * 	is_gsc_enable()
+ * 	is_ga_enable()
 */
 
 	/**
@@ -110,9 +112,14 @@ class _windmill_google_analytics
 		 * 	https://developer.wordpress.org/reference/functions/apply_filters/
 		*/
 		return apply_filters("_filter[{$class}][{$function}]",$this->set_parameter_callback(array(
-			'register' => array(
+			'search_console' => array(
 				'tag' => 'add_action',
 				'hook' => 'wp_head'
+			),
+			'analytics' => array(
+				'tag' => 'add_action',
+				'hook' => 'wp_enqueue_scripts'
+				// 'hook' => 'wp_head'
 			),
 		)));
 
@@ -122,57 +129,116 @@ class _windmill_google_analytics
 	/* Hook
 	_________________________
 	*/
-	public function register()
+	public function search_console()
 	{
 		/**
 			@access (public)
-				Returns the JSON representation of a value.
-				https://www.php.net/manual/en/function.json-encode.php
+				Print google-siete-verification meta.
 			@return (void)
-			@reference (WP)
-				Prints scripts or data in the head tag on the front end.
-				https://developer.wordpress.org/reference/hooks/wp_head/
 			@reference
 				[Parent]/inc/customizer/option.php
-				[Parent]/inc/setup/constant.php
 				[Parent]/inc/utility/general.php
-				[Parent]/template-part/ga/xxx.php
 		*/
-		if(!$this->is_enable()){return;}
+		if(__utility_is_active_plugin('google-site-kit/google-site-kit.php')){return;}
 
-		$tracking_option = array();
+		// if(!$this->is_gsc_enable()){return;}
 
-		// Turn on output buffering
-		ob_start();
+		$class = self::$_class;
+		$function = __utility_get_function(__FUNCTION__);
+
+		$site_verification = NULL;
+		$site_verification = __utility_get_option('gsc_meta-tag');
+		if(!$site_verification){return;}
 
 		/**
 		 * @reference (WP)
-		 * 	Loads a template part into a template.
-		 * 	https://developer.wordpress.org/reference/functions/get_template_part/
+		 * 	Calls the callback functions that have been added to a filter hook.
+		 * 	https://developer.wordpress.org/reference/functions/apply_filters/
 		*/
-		get_template_part(SLUG['plugin'] . 'google/type-' . __utility_get_option('ga_tracking-type'),NULL,array(
-			'ga_tracking_id' => __utility_get_option('ga_tracking-id'),
-			'ga_tracking_option' => empty($tracking_option) ? '' : json_encode($tracking_option,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
-		));
+		echo apply_filters("_filter[{$class}][{$function}]",sprintf('<meta name="google-site-verification" content="%s" />',esc_attr($site_verification)));
 
-		// Get current buffer contents and delete current output buffer.
-		echo ob_get_clean();
+	}// Method
+
+
+	/* Hook
+	_________________________
+	*/
+	public function analytics()
+	{
+		/**
+			@access (public)
+				Print Google Analytics script.
+			@return (void)
+			@reference
+				[Parent]/inc/customizer/option.php
+				[Parent]/inc/utility/general.php
+		*/
+		if(__utility_is_active_plugin('google-site-kit/google-site-kit.php')){return;}
+
+		// if(!$this->is_ga_enable()){return;}
+
+		$tracking_id = NULL;
+		$tracking_id = __utility_get_option('ga_tracking-id');
+		if(!$tracking_id){return;}
+		// if(!preg_match('/^UA-\d+-\d+$/',$tracking_id)){return;}
+
+		/**
+		 * @reference (WP)
+		 * 	Enqueue a script.
+		 * 	https://developer.wordpress.org/reference/functions/wp_enqueue_script/
+		*/
+		wp_enqueue_script(
+			__utility_make_handle('google-analytics'),
+			esc_url('https://www.googletagmanager.com/gtag/js?id=' . $tracking_id),
+			array(),
+			__utility_get_theme_version(),
+			TRUE
+		);
+
+		/**
+		 * @reference (WP)
+		 * 	Adds extra code to a registered script.
+		 * 	https://developer.wordpress.org/reference/functions/wp_add_inline_script/
+		*/
+		wp_add_inline_script(
+			__utility_make_handle('google-analytics'),
+			"window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments)}; gtag('js', new Date()); gtag('config', '{$tracking_id}');",
+			'after'
+		);
 
 	}// Method
 
 
 	/**
 		@access (private)
-			Check if Google Analytics output.
+			Check if Google Search Console is available.
+		@return (bool)
+		@reference
+			[Parent]/inc/customizer/option.php
+			[Parent]/inc/utility/general.php
+	*/
+	private function is_gsc_enable()
+	{
+		if(__utility_get_option('gsc_use') === 0){
+			return FALSE;
+		}
+		return TRUE;
+
+	}// Method
+
+
+	/**
+		@access (private)
+			Check if Google Analytics is available.
 		@return (bool)
 		@reference
 			[Parent]/inc/customizer/option.php
 			[Parent]/inc/utility/general.php
 			[Plugin]/amp/amp.php
 	*/
-	private function is_enable()
+	private function is_ga_enable()
 	{
-		if(!__utility_get_option('ga_use')){
+		if(__utility_get_option('ga_use') === 0){
 			return FALSE;
 		}
 
@@ -206,5 +272,5 @@ class _windmill_google_analytics
 
 }// Class
 endif;
-// new _windmill_google_analytics();
-_windmill_google_analytics::__get_instance();
+// new _windmill_google();
+_windmill_google::__get_instance();

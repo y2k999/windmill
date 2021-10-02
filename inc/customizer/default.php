@@ -464,6 +464,10 @@ class _customizer_default
 			'ga_tracking-type' => 'gtag',
 			'ga_exclude-login' => 1,
 
+			// google search console
+			'gsc_use' => 0,
+			'gsc_meta-tag' => '',
+
 			// tag
 			'tag_site-title' => 'h1',
 			'tag_site-description' => 'p',
